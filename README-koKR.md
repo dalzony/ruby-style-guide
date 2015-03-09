@@ -556,7 +556,7 @@ PDF나 HTML로 복사해갈 수 있다.
 
 * <a name="rdoc-conventions"></a>
     RDoc과 API 문서의 컨벤션을 이용하라.
-    `def`와 명령 블락사이에 빈 줄을 넣지 마라.
+    `def`와 명령 블록 사이에 빈 줄을 넣지 마라.
 <sup>[[link](#rdoc-conventions)]</sup>
 
 * <a name="80-character-limits"></a>
@@ -1117,12 +1117,12 @@ PDF나 HTML로 복사해갈 수 있다.
 
   혹자는 {...}를 사용하는 여러 줄에 걸친 체이닝(chaining)이 보기에 괜찮다고 주장할 수도 있겠지만,
   정말 그러한지는 다음 사항들에 대해 자문해봐야 한다.
-  그렇게 작성된 코드가 가독성이 좋은지? 또한 블럭 내부의 내용이 외부의 정교한 메서드로 호환 가능한지?
+  그렇게 작성된 코드가 가독성이 좋은지? 또 블록 내부의 내용이 깔끔하게 메서드로 추출 가능한지?
   등에 대해서 말이다.
 
 * <a name="block-argument"></a>
-  다른 블럭에 인수만 넘기는 블럭 구문 쓰는 것을 피하기 위해,
-  명시적으로 블럭 인수를 사용하는 것을 고려해보라.
+  다른 블록에 인수만 넘기는 블록 구문 쓰는 것을 피하기 위해,
+  명시적으로 블록 인수를 사용하는 것을 고려해보라.
   블록이 `proc`으로 변하면서, 성능에 영향을 주는 것을 조심하라.
 <sup>[[link](#block-argument)]</sup>
 
@@ -1345,7 +1345,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#eql)]</sup>
 
   ```Ruby
-  # 나쁜 예 - eql? 은 스트링에서는 == 와 같음
+  # 나쁜 예 - eql?은 문자열에서는 ==와 같음
   "ruby".eql? some_str
 
   # 좋은 예
@@ -1392,8 +1392,8 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#always-warn-at-runtime)]</sup>
 
 * <a name="lambda-multi-line"></a>
-  한 줄짜리 본문 블락에 새로운 lambda 문법구문을 사용하라.
-  `lambda`메소드는 여러 줄이 있는 블락에 써라.
+  한 줄짜리 본문 블록에 새로운 lambda 문법구문을 사용하라.
+  `lambda` 메소드는 여러 줄이 있는 블록에 써라.
 <sup>[[link](#lambda-multi-line)]</sup>
 
   ```Ruby
@@ -1449,7 +1449,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="underscore-unused-vars"></a>
-  사용하지 않는 블락 인수나, 지역변수에는 `_`를 앞에 붙여라.
+  사용하지 않는 블록 인수나, 지역변수에는 `_`를 앞에 붙여라.
   (설명이 좀 없더라도)`_`만 쓰는 것도 가능하다.
   이 컨벤션은 루비 인터프리터와 Robocop과 같은 툴에 의해 인지되고,
   사용하지 않는 변수에 대한 경고를 숨긴다.
@@ -1619,11 +1619,11 @@ PDF나 HTML로 복사해갈 수 있다.
     ```
 
 * <a name="no-BEGIN-blocks"></a>
-  `BEGIN`블락 사용을 피하라.
+  `BEGIN` 블록 사용을 피하라.
 <sup>[[link](#no-BEGIN-blocks)]</sup>
 
 * <a name="no-END-blocks"></a>
-  `END`블락 사용을 피하라. 차라리 `Kernel#at_exit`를 써라.
+  `END` 블록 사용을 피하라. 차라리 `Kernel#at_exit`를 써라.
 <sup>[[link](#no-END-blocks)]</sup>
 
   ```ruby
@@ -1667,7 +1667,7 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 
-  루프내에서는 조건문 블락 대신에 `next`를 선호한다.
+  루프 내에서는 조건문 블록 대신에 `next`를 선호한다.
 
   ```Ruby
   # 나쁜 예
@@ -1897,7 +1897,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="reduce-blocks"></a>
-  짧은 블럭과 함께 `reduce`를 쓸 때에는,
+  짧은 블록과 함께 `reduce`를 쓸 때에는,
   인수 이름을 `|a, e|`로 하라.(accumulator, element)
 <sup>[[link](#reduce-blocks)]</sup>
 
@@ -2515,7 +2515,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-return-ensure"></a>
-  `ensure` 블럭에서 리턴하지 마라. `ensure` 안에서 명시적으로 리턴을 하면 예외가 발생하기 전에 리턴이
+  `ensure` 블록에서 리턴하지 마라. `ensure` 안에서 명시적으로 리턴을 하면 예외가 발생하기 전에 리턴이
   되고 예외가 발생하지 않은것 처럼 동작할 것이다.
 <sup>[[link](#no-return-ensure)]</sup>
 
@@ -2528,7 +2528,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="begin-implicit"></a>
-  가능하면 *함축적인 begin 블럭*을 사용한다.
+  가능하면 *함축적인 begin 블록*을 사용한다.
 <sup>[[link](#begin-implicit)]</sup>
 
   ```Ruby
@@ -2550,7 +2550,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="contingency-methods"></a>
-  `begin` 블럭이 많아지는 것을 줄이기 위해서 *contingency 메서드*를 사용한다.
+  `begin` 블록이 많아지는 것을 줄이기 위해서 *contingency 메서드*를 사용한다.
   (용어는 Avdi Grimm가 만들었다).
 <sup>[[link](#contingency-methods)]</sup>
 
@@ -2692,7 +2692,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="release-resources"></a>
-  `ensure` 블럭에서 사용했던 자원을 모두 반환한다.
+  `ensure` 블록에서 사용했던 자원을 모두 반환한다.
 <sup>[[link](#release-resources)]</sup>
 
   ```Ruby
@@ -2893,7 +2893,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="use-hash-blocks"></a>
-  `Hash#fetch` 기본 값 대신 블럭을 사용하는 것이 좋다.
+  `Hash#fetch` 기본 값 대신 블록을 사용하는 것이 좋다.
 <sup>[[link](#use-hash-blocks)]</sup>
 
   ```Ruby
@@ -2903,7 +2903,7 @@ PDF나 HTML로 복사해갈 수 있다.
   # 여러 번 실행되는 경우 프로그램이 느려질 수 있다.
   batman.fetch(:powers, get_batman_powers) # get_batman_powers은 오래 걸리는 함수이다.
 
-  # good - 블럭은 나중에 실행된다. 그래서 KeyError 예외가 발생하는 경우만 실행된다.
+  # good - 블록은 나중에 실행된다. 그래서 KeyError 예외가 발생하는 경우만 실행된다.
   batman.fetch(:powers) { get_batman_powers }
   ```
 
@@ -3215,7 +3215,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="gsub-blocks"></a>
-  `sub`/`gsub`를 사용해서 복잡한 치환을 하는 경우 블럭이나 해시를 사용할 수 있다.
+  `sub`/`gsub`를 사용해서 복잡한 치환을 하는 경우 블록이나 해시를 사용할 수 있다.
 <sup>[[link](#gsub-blocks)]</sup>
 
 ## 퍼센트 리터럴
@@ -3319,7 +3319,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#no-monkey-patching)]</sup>
 
 * <a name="block-class-eval"></a>
-  `class_eval` 폼 블럭은 문자열 삽입 폼보다 더 좋다.
+  `class_eval` 폼 블록은 문자열 삽입 폼보다 더 좋다.
   - 문자열 삽입 폼을 사용할 때는  backtrace를 위해서 항상 `__FILE__`과 `__LINE__`를 써야한다.
 <sup>[[link](#block-class-eval)]</sup>
 
@@ -3447,7 +3447,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#no-param-mutations)]</sup>
 
 * <a name="three-is-the-number-thou-shalt-count"></a>
-  블럭안에 블럭을 포함할 때는 3단계 이상되지 않게 하라.
+  블록 안에 3단 이상의 블록을 포함하지 마라.
 <sup>[[link](#three-is-the-number-thou-shalt-count)]</sup>
 
 * <a name="be-consistent"></a>
