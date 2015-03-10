@@ -43,7 +43,7 @@
 를 기반이 되었다.
 
 특정 스타일에 대해서 Ruby커뮤니티의 명백한 합의를 얻지 못한 부분도 있다.
-(문자열 구문 따옴표, 해시구문 내에서의 공백, 여러줄에 걸친 메소드 체인에서의 점(.)위치 등등)
+(문자열 구문 따옴표, 해시구문 내에서의 공백, 여러 줄에 걸친 메소드 체인에서의 점(.)위치 등등)
 이러한 시나리오에서는 모든 유명한 스타일들이 허용되므로,
 어떤 것을 사용할지는 당신이 선택하고 적용하기 나름이다.
 
@@ -445,8 +445,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="consistent-multi-line-chains"></a>
-    메소드 체이닝이 여러줄에 걸쳐서 이루어질 때, 일관된 스타일을 정하고 적용하라.
-    루비에서 여러줄에 걸친 메소드 체이닝 표현 스타일은 크게 두 가지가 있는데, 둘 모두 괜찮은 방식이다.
+    메소드 체이닝이 여러 줄에 걸쳐서 이루어질 때, 일관된 스타일을 정하고 적용하라.
+    루비에서 여러 줄에 걸친 메소드 체이닝 표현 스타일은 크게 두 가지가 있는데, 둘 모두 괜찮은 방식이다.
     `.`의 위치에 따라 선두법(leading, A방식)과 후방법(trailing, B방식)이 있다.
 <sup>[[link](#consistent-multi-line-chains)]</sup>
 
@@ -556,7 +556,7 @@ PDF나 HTML로 복사해갈 수 있다.
 
 * <a name="rdoc-conventions"></a>
     RDoc과 API 문서의 컨벤션을 이용하라.
-    `def`와 명령 블락사이에 빈 줄을 넣지 마라.
+    `def`와 명령 블록 사이에 빈 줄을 넣지 마라.
 <sup>[[link](#rdoc-conventions)]</sup>
 
 * <a name="80-character-limits"></a>
@@ -854,7 +854,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-multiline-if-modifiers"></a>
-  간단하지 않고 여러줄에 걸친 구문 블록에는, 한정자 `if/unless`를 피하라.
+  간단하지 않고 여러 줄에 걸친 구문 블록에는, 한정자 `if/unless`를 피하라.
 <sup>[[link](#no-multiline-if-modifiers)]</sup>
 
   ```Ruby
@@ -1048,10 +1048,10 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#no-braces-opts-hash)]</sup>
 
   ```Ruby
-  # bad
+  # 나쁜 예
   user.set({ name: 'John', age: 45, permissions: { read: true } })
 
-  # good
+  # 좋은 예
   user.set(name: 'John', age: 45, permissions: { read: true })
   ```
 
@@ -1115,14 +1115,14 @@ PDF나 HTML로 복사해갈 수 있다.
   names.select { |name| name.start_with?('S') }.map { |name| name.upcase }
   ```
 
-  혹자는 {...}를 사용하는 여러줄에 걸친 체이닝(chaining)이 보기에 괜찮다고 주장할 수도 있겠지만,
+  혹자는 {...}를 사용하는 여러 줄에 걸친 체이닝(chaining)이 보기에 괜찮다고 주장할 수도 있겠지만,
   정말 그러한지는 다음 사항들에 대해 자문해봐야 한다.
-  그렇게 작성된 코드가 가독성이 좋은지? 또한 블럭 내부의 내용이 외부의 정교한 메서드로 호환 가능한지?
+  그렇게 작성된 코드가 가독성이 좋은지? 또 블록 내부의 내용이 깔끔하게 메서드로 추출 가능한지?
   등에 대해서 말이다.
 
 * <a name="block-argument"></a>
-  다른 블럭에 인수만 넘기는 블럭 구문 쓰는 것을 피하기 위해,
-  명시적으로 블럭 인수를 사용하는 것을 고려해보라.
+  다른 블록에 인수만 넘기는 블록 구문 쓰는 것을 피하기 위해,
+  명시적으로 블록 인수를 사용하는 것을 고려해보라.
   블록이 `proc`으로 변하면서, 성능에 영향을 주는 것을 조심하라.
 <sup>[[link](#block-argument)]</sup>
 
@@ -1345,10 +1345,10 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#eql)]</sup>
 
   ```Ruby
-  # bad - eql? is the same as == for strings
+  # 나쁜 예 - eql?은 문자열에서는 ==와 같음
   "ruby".eql? some_str
 
-  # good
+  # 좋은 예
   "ruby" == some_str
   1.0.eql? x # eql? makes sense here if want to differentiate between Fixnum and Float 1
   ```
@@ -1392,8 +1392,8 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#always-warn-at-runtime)]</sup>
 
 * <a name="lambda-multi-line"></a>
-  한 줄짜리 본문 블락에 새로운 lambda 문법구문을 사용하라.
-  `lambda`메소드는 여러줄이 있는 블락에 써라.
+  한 줄짜리 본문 블록에 새로운 lambda 문법구문을 사용하라.
+  `lambda` 메소드는 여러 줄이 있는 블록에 써라.
 <sup>[[link](#lambda-multi-line)]</sup>
 
   ```Ruby
@@ -1449,7 +1449,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="underscore-unused-vars"></a>
-  사용하지 않는 블락 인수나, 지역변수에는 `_`를 앞에 붙여라.
+  사용하지 않는 블록 인수나, 지역변수에는 `_`를 앞에 붙여라.
   (설명이 좀 없더라도)`_`만 쓰는 것도 가능하다.
   이 컨벤션은 루비 인터프리터와 Robocop과 같은 툴에 의해 인지되고,
   사용하지 않는 변수에 대한 경고를 숨긴다.
@@ -1619,11 +1619,11 @@ PDF나 HTML로 복사해갈 수 있다.
     ```
 
 * <a name="no-BEGIN-blocks"></a>
-  `BEGIN`블락 사용을 피하라.
+  `BEGIN` 블록 사용을 피하라.
 <sup>[[link](#no-BEGIN-blocks)]</sup>
 
 * <a name="no-END-blocks"></a>
-  `END`블락 사용을 피하라. 차라리 `Kernel#at_exit`를 써라.
+  `END` 블록 사용을 피하라. 차라리 `Kernel#at_exit`를 써라.
 <sup>[[link](#no-END-blocks)]</sup>
 
   ```ruby
@@ -1667,7 +1667,7 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 
-  루프내에서는 조건문 블락 대신에 `next`를 선호한다.
+  루프 내에서는 조건문 블록 대신에 `next`를 선호한다.
 
   ```Ruby
   # 나쁜 예
@@ -1684,14 +1684,14 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 
-* <a name="map-fine-select-reduce-size"></a>
+* <a name="map-find-select-reduce-size"></a>
   `collect`보다는 `map`을, `detect`보다는 `find`를, `find_all`보다는 `select`를,
   `inject`보다는 `reduce`를, `length`보다는 `size`를 권장한다.
   이것이 무리한 요구는 아니다; 다른 alias를 써서 가독성이 좋아진다면, 그것도 괜찮다.
   메소드의 시적인 표현은 Samlltalk언어로 부터 물려받은 것으로, 일반적인 다른 프로그래밍 언어와는 다르다.
   `select`를 사용하는 이유는 `reject`와 함께 쓰일 때
   `find_all`보다 좀 더 잘 어울리고 이름 자체가 충분한 설명이 되기 때문이다.
-<sup>[[link](#map-fine-select-reduce-size)]</sup>
+<sup>[[link](#map-find-select-reduce-size)]</sup>
 
 * <a name="count-vs-size"></a>
   `size`를 대신해서 `count`를 쓰지 마라. `Array`외의 `Enumerable`객체들은
@@ -1897,7 +1897,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="reduce-blocks"></a>
-  짧은 블럭과 함께 `reduce`를 쓸 때에는,
+  짧은 블록과 함께 `reduce`를 쓸 때에는,
   인수 이름을 `|a, e|`로 하라.(accumulator, element)
 <sup>[[link](#reduce-blocks)]</sup>
 
@@ -1967,7 +1967,8 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#annotate-keywords)]</sup>
 
 * <a name="indent-annotations"></a>
-  만약 설명이 여러줄인 경우 다음 줄은 `#`을 쓰고 두 칸 들여쓰기 한다.
+  만약 설명이 여러 줄인 경우 다음 줄은 `#`을 쓰고 세 칸 들여쓰기 한다.
+  (한 칸은 일반적으로 하고, 두 칸은 들여쓰기 목적)
 <sup>[[link](#indent-annotations)]</sup>
 
   ```Ruby
@@ -2169,7 +2170,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#liskov)]</sup>
 
 * <a name="solid-design"></a>
-  클래스는 가능한한 [SOLID](http://ko.wikipedia.org/wiki/SOLID) 원칙을 따른다.
+  클래스는 가능한 한 [SOLID](http://ko.wikipedia.org/wiki/SOLID) 원칙을 따른다.
 <sup>[[link](#solid-design)]</sup>
 
 * <a name="define-to-s"></a>
@@ -2258,10 +2259,19 @@ PDF나 HTML로 복사해갈 수 있다.
   ````
 
 * <a name="no-extend-struct-new"></a>
-  `Struct.new`를 상속하지 않는다. - `Struct.new`는 이미 새로운 클래스이다. `Struct.new`를
-  상속 받는 것은 쓸데없는 클래스 계층을 하나 더 만드는 것이고 만약 그 파일이 동시에 필요하게 된다면 이상한
-  에러가 날지도 모른다.
+  `Struct.new`에 의해 초기화된 인스턴스를 확장하지 않는다. `Struct.new`를
+  확장하는 것은 쓸데없는 클래스 계층을 하나 더 만드는 것이고 만약 그 파일이
+  여러 번 require 된다면 이상한 에러가 날지도 모른다.
 <sup>[[link](#no-extend-struct-new)]</sup>
+
+  ```Ruby
+  # 나쁜 예
+  class Person < Struct.new(:first_name, :last_name)
+  end
+
+  # 좋은 예
+  Person = Struct.new(:first_name, :last_name)
+  ````
 
 * <a name="factory-methods"></a>
   어떤 클래스의 인스턴스를 생성할 때 좀 더 명확한 방법을 제공하는 팩토리 메서드를 추가하는 것을 고려해보자.
@@ -2505,7 +2515,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-return-ensure"></a>
-  `ensure` 블럭에서 리턴하지 마라. `ensure` 안에서 명시적으로 리턴을 하면 예외가 발생하기 전에 리턴이
+  `ensure` 블록에서 리턴하지 마라. `ensure` 안에서 명시적으로 리턴을 하면 예외가 발생하기 전에 리턴이
   되고 예외가 발생하지 않은것 처럼 동작할 것이다.
 <sup>[[link](#no-return-ensure)]</sup>
 
@@ -2518,7 +2528,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="begin-implicit"></a>
-  가능하면 *함축적인 begin 블럭*을 사용한다.
+  가능하면 *함축적인 begin 블록*을 사용한다.
 <sup>[[link](#begin-implicit)]</sup>
 
   ```Ruby
@@ -2540,7 +2550,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="contingency-methods"></a>
-  `begin` 블럭이 많아지는 것을 줄이기 위해서 *contingency 메서드*를 사용한다.
+  `begin` 블록이 많아지는 것을 줄이기 위해서 *contingency 메서드*를 사용한다.
   (용어는 Avdi Grimm가 만들었다).
 <sup>[[link](#contingency-methods)]</sup>
 
@@ -2671,7 +2681,7 @@ PDF나 HTML로 복사해갈 수 있다.
     # 여기는 실행되지 않는다.
   end
 
-  # good
+  # 좋은 예
   begin
     # 코드
   rescue StandardError => e
@@ -2681,9 +2691,9 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 
-* <a name="file-close"></a>
-  ensure 블럭에서 사용했던 자원을 모두 반환한다.
-<sup>[[link](#file-close)]</sup>
+* <a name="release-resources"></a>
+  `ensure` 블록에서 사용했던 자원을 모두 반환한다.
+<sup>[[link](#release-resources)]</sup>
 
   ```Ruby
   f = File.open('testfile')
@@ -2693,6 +2703,22 @@ PDF나 HTML로 복사해갈 수 있다.
     # .. handle error
   ensure
     f.close unless f.nil?
+  end
+  ```
+
+* <a name="auto-release-resources"></a>
+  가능한 한 자동으로 리소스를 정리해주는 버전의 메소드를 사용한다.
+<sup>[[link](#auto-release-resources)]</sup>
+
+  ```Ruby
+  # 나쁜 예 - 파일 서술자를 명시적으로 닫아야 함
+  f = File.open('testfile')
+    # ...
+  f.close
+
+  # 좋은 예 - 파일 서술자가 자동으로 닫힘
+  File.open('testfile') do |f|
+    # ...
   end
   ```
 
@@ -2867,17 +2893,17 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="use-hash-blocks"></a>
-  `Hash#fetch` 기본 값 대신 블럭을 사용하는 것이 좋다.
+  `Hash#fetch` 기본 값 대신 블록을 사용하는 것이 좋다.
 <sup>[[link](#use-hash-blocks)]</sup>
 
   ```Ruby
   batman = { name: 'Bruce Wayne' }
 
   # 나쁜 예 - 만약 기본 값을 사용하는 경우, 함수가 먼저 실행이 되므로
-  # 여러번 실행되는 경우 프로그램이 느려질 수 있다.
+  # 여러 번 실행되는 경우 프로그램이 느려질 수 있다.
   batman.fetch(:powers, get_batman_powers) # get_batman_powers은 오래 걸리는 함수이다.
 
-  # good - 블럭은 나중에 실행된다. 그래서 KeyError 예외가 발생하는 경우만 실행된다.
+  # good - 블록은 나중에 실행된다. 그래서 KeyError 예외가 발생하는 경우만 실행된다.
   batman.fetch(:powers) { get_batman_powers }
   ```
 
@@ -2901,6 +2927,40 @@ PDF나 HTML로 복사해갈 수 있다.
 * <a name="no-modifying-collections"></a>
   컬렉션을 순회하는 동안 컬렉션을 수정하지 마라.
 <sup>[[link](#no-modifying-collections)]</sup>
+
+* <a name="accessing-elements-directly"></a>
+  컬렉션의 요소에 접근할 때는, 가능한 한 리더 메소드의 다른 형식을 사용해 `[n]`을
+  통한 직접 접근을 피한다. 이는 `nil`에 `[]`를 호출하는 것을 방지한다.
+<sup>[[link](#accessing-elements-directly)]</sup>
+
+  ```Ruby
+  # 나쁜 예
+  Regexp.last_match[1]
+
+  # 좋은 예
+  Regexp.last_match(1)
+  ```
+
+* <a name="provide-alternate-accessor-to-collections"></a>
+  컬렉션의 접근자를 만들 때에는, 다른 형식을 제공해 사용자가 컬렉션의 요소에
+  접근하기 전에 `nil`을 체크하지 않도록 한다.
+<sup>[[link](#provide-alternate-accessor-to-collections)]</sup>
+
+  ```Ruby
+  # 나쁜 예
+  def awesome_things
+    @awesome_things
+  end
+
+  # 좋은 예
+  def awesome_things(index = nil)
+    if index && @awesome_things
+      @awesome_things[index]
+    else
+      @awesome_things
+    end
+  end
+  ```
 
 ## 문자열
 
@@ -3091,7 +3151,7 @@ PDF나 HTML로 복사해갈 수 있다.
 
 * <a name="no-perl-regexp-last-matchers"></a>
   정규식 그룹에서 값을 사용할 때 (`$1`, `$2`, etc) 처럼 암호문 같은 펄 변수 기호를 사용하지 마라.
-  대신 `Regexp.last_match[n]`를 사용하라.
+  대신 `Regexp.last_match(n)`를 사용하라.
 <sup>[[link](#no-perl-regexp-last-matchers)]</sup>
 
   ```Ruby
@@ -3102,7 +3162,7 @@ PDF나 HTML로 복사해갈 수 있다.
   process $1
 
   # 좋은 예
-  process Regexp.last_match[1]
+  process Regexp.last_match(1)
   ```
 
 * <a name="no-numbered-regexes"></a>
@@ -3114,7 +3174,7 @@ PDF나 HTML로 복사해갈 수 있다.
   # 나쁜 예
   /(regexp)/ =~ string
   ...
-  process Regexp.last_match[1]
+  process Regexp.last_match(1)
 
   # 좋은 예
   /(?<meaningful_var>regexp)/ =~ string
@@ -3155,7 +3215,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="gsub-blocks"></a>
-  `sub`/`gsub`를 사용해서 복잡한 치환을 하는 경우 블럭이나 해시를 사용할 수 있다.
+  `sub`/`gsub`를 사용해서 복잡한 치환을 하는 경우 블록이나 해시를 사용할 수 있다.
 <sup>[[link](#gsub-blocks)]</sup>
 
 ## 퍼센트 리터럴
@@ -3174,7 +3234,7 @@ PDF나 HTML로 복사해갈 수 있다.
   %(This is #{quality} style)
   # should be "This is #{quality} style"
 
-  # 나쁜 예 (여러줄이다)
+  # 나쁜 예 (여러 줄이다)
   %(<div>\n<span class="big">#{exclamation}</span>\n</div>)
   # should be a heredoc.
 
@@ -3250,16 +3310,16 @@ PDF나 HTML로 복사해갈 수 있다.
 
 ## 메타프로그래밍
 
-* <a name="no-metaprogramming-masturbation"></a>
+* <a name="no-needless-metaprogramming"></a>
   쓸데없는 메타프로그래밍은 하지 마라.
-<sup>[[link](#no-metaprogramming-masturbation)]</sup>
+<sup>[[link](#no-needless-metaprogramming)]</sup>
 
 * <a name="no-monkey-patching"></a>
   라이브러리를 작성할 때 코어 클래스를 망쳐놓지 마라. (거기에 Monkey-patch를 하지 마라.)
 <sup>[[link](#no-monkey-patching)]</sup>
 
 * <a name="block-class-eval"></a>
-  `class_eval` 폼 블럭은 문자열 삽입 폼보다 더 좋다.
+  `class_eval` 폼 블록은 문자열 삽입 폼보다 더 좋다.
   - 문자열 삽입 폼을 사용할 때는  backtrace를 위해서 항상 `__FILE__`과 `__LINE__`를 써야한다.
 <sup>[[link](#block-class-eval)]</sup>
 
@@ -3387,7 +3447,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#no-param-mutations)]</sup>
 
 * <a name="three-is-the-number-thou-shalt-count"></a>
-  블럭안에 블럭을 포함할 때는 3단계 이상되지 않게 하라.
+  블록 안에 3단 이상의 블록을 포함하지 마라.
 <sup>[[link](#three-is-the-number-thou-shalt-count)]</sup>
 
 * <a name="be-consistent"></a>
