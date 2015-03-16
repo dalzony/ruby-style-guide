@@ -3,62 +3,55 @@
 > 롤 모델이 중요하다.<br/>
 > -- Officer Alex J. Murphy / RoboCop
 
-루비 개발자로서 항상 한가지 문제로 괴로웠다. - 파이썬 개발자들은 훌륭한 프로그래밍 스타일 가이드([PEP-8][])
-를 가지고 있는데, 우리에겐 코딩 스타일과 모범 사례를 가진 공식적인 가이드가 전혀 없다는 것이다.
-그리고 나는 그것이야말로 문제라고 확신한다.
-또한 루비의 훌륭한 해커 커뮤니티는 모두가 탐낼 만한 문서를 만들어낼 능력이 있다고 확신한다.
+나는 루비 개발자로서 항상 한 가지 문제로 괴로웠다. - 파이썬 개발자들은 훌륭한
+프로그래밍 스타일 가이드([PEP-8][])를 가지고 있는데, 우리에겐 코딩 스타일과
+모범 사례를 가진 공식적인 가이드가 전혀 없다는 것이다. 그리고 나는 그것이야말로
+문제라고 확신한다. 또한 루비의 훌륭한 해커 커뮤니티는 모두가 탐낼 만한 문서를
+만들어낼 능력이 있다고 확신한다.
 
-이 가이드는 사내 Ruby 코딩 가이드라인으로 시작됐다.
-그러나 몇몇 포인트에서 제가 작성한 가이드가 일반 루비 커뮤니티에도 도움이 되게끔 써서
-이와 같은 중복 작업이 더이상 없기를 바라며 작업하기로 했다.
-그러나 루비 커뮤니티에 의해 자체적으로 수립된 예제, 숙어, 스타일에 관한
-프로그래밍 방식 역시 많은 관련자들에게 도움이 될 것이다.
+이 가이드는 사내 루비 코딩 가이드 라인으로 시작됐다.
+그러나 몇몇 포인트에서 내가 작성한 가이드가 일반 루비 커뮤니티에도 도움이 되게끔
+써서 이와 같은 중복 작업이 더는 없기를 바라며 작업하기로 했다. 그러나 루비
+커뮤니티에 의해 자체적으로 수립된 예제, 숙어, 스타일에 관한 프로그래밍 방식
+역시 많은 관련자에게 도움이 될 것이다.
 
-가이드를 작성하기 시작한 때부터 본인은 여러 유수의 루비 커뮤니티로부터 소중한 피드백을 받았다.
-여러 분들의 그러한  협력과 노고에 다시 한 번 감사의 말씀을 올린다.
-많은 분들의 도움이 있었기에 가이드를 작성할 수 있었고,
-그러한 상호작용을 통해 여타의 모든 루비 개발 관계자들에게 도움될 수 있으리라 본다.
+가이드를 작성하기 시작한 때부터 본인은 여러 유수의 루비 커뮤니티로부터 소중한
+피드백을 받았다. 여러 분들의 그러한 협력과 노고에 다시 한 번 감사의 말씀을
+올린다. 많은 분들의 도움이 있었기에 가이드를 작성할 수 있었고, 그러한 상호작용을
+통해 여타의 모든 루비 개발 관계자들에게 도움될 수 있으리라 본다.
 
-한가지 더, Rails에 관심 있는 사람이라면,
-추가적으로 필요한 부분은
-[Ruby on Rails Style Guide][rails-style-guide]을
-참고하면 된다.
+한 가지 더, 레일즈에 관심 있는 사람이라면, 추가적으로 필요한 부분은 [루비 온
+레일즈 스타일 가이드][rails-style-guide]를 참고하면 된다.
 
 # 루비 스타일 가이드
 
-이 루비 스타일 가이드는 다른 루비프로그래머들과 유지가능한 코드를 작성하는
-모범사례를 적용하는 것을 추천한다.
-이 가이드가 실제 사용밥법을 반영하기 때문에, 이상적으로 만들어져서
-적용이 위험하다고 느끼는 사람들에 의해서는 사용되지 않았다.
-&ndash;비록 그게 아무리 좋다고 해도 말이다.
+이 루비 스타일 가이드는 다른 루비 개발자와 유지가능한 코드를 작성하는 모범사례를
+적용하는 것을 추천한다. 이 가이드가 실제 사용밥법을 반영하기 때문에, 이상적으로
+만들어져서 적용이 위험하다고 느끼는 사람은 사용하지 않는 것이 좋다. &ndash;그게
+아무리 좋다고 해도 말이다.
 
-이 가이드는 관련된 규칙에 따라 여러 부분으로 나눠져 있다.
-(자명하다고 판단된 것을 제외하고는)규칙을 적으며 근거를 덧붙이려 노력했다.
+이 가이드는 관련된 규칙에 따라 여러 부분으로 나뉘어 있다.(자명하다고 판단된
+것을 제외하고는)규칙을 적으며 근거를 덧붙이려 노력했다.
 
-이 모든 규칙들이 갑자기 제시되지는 않았다. 이것들 대부분이
-내 전문분야인 소프트웨어 엔지니어로서의 수많은 경험, 루비커뮤니티원들의 제안,
-또한 높은 평가를 받고있는 프로그래밍 리소스인
-["Programming Ruby 1.9"][pickaxe]과
-["The Ruby Programming Language"][trpl]
-를 기반이 되었다.
+이 모든 규칙들이 갑자기 제시되지는 않았다. 이것들 대부분이 내 전문분야인
+소프트웨어 엔지니어로서의 수많은 경험, 루비 커뮤니티원의 제안, 또한 높은 평가를
+받고 있는 프로그래밍 리소스인 ["Programming Ruby 1.9"][pickaxe]와
+["The 루비 Programming Language"][trpl]를 기반으로 하였다.
 
-특정 스타일에 대해서 Ruby커뮤니티의 명백한 합의를 얻지 못한 부분도 있다.
-(문자열 구문 따옴표, 해시구문 내에서의 공백, 여러 줄에 걸친 메소드 체인에서의 점(.)위치 등등)
-이러한 시나리오에서는 모든 유명한 스타일들이 허용되므로,
-어떤 것을 사용할지는 당신이 선택하고 적용하기 나름이다.
+특정 스타일에 대해서 루비 커뮤니티의 명백한 합의를 얻지 못한 부분도 있다.(문자열
+구문 따옴표, 해시문 내에서의 공백, 여러 줄에 걸친 메소드 체인에서의 점(.)위치
+등) 이러한 시나리오에서는 모든 유명한 스타일들이 허용되므로, 어떤 것을
+사용할지는 당신이 선택하고 적용하기 나름이다.
 
-이 가이드라인은 시간에 따라 진화한다. 새로운 규칙이 확인되고, 오래된
-규칙은 루비가 변함에 따라 쓸모없어진다.
+이 가이드 라인은 시간에 따라 발전한다. 새로운 규칙이 확인되고, 오래된 규칙은
+루비가 변함에 따라 쓸모없어진다.
 
-많은 프로젝트들이 (대게 여기서 유래된) 그들만의 코딩 스타일 가이드라인
-을 가진다. 상충하는 부분이 있을 경우, 그 프로젝트에선 프로젝트의 가이드
-라인을 우선하라.
+많은 프로젝트가 (대개 여기서 유래된) 그들만의 코딩 스타일 가이드 라인을 가진다.
+상충하는 부분이 있을 경우, 그 프로젝트에선 프로젝트의 가이드 라인을 우선하라.
 
-이 가이드는 [Transmuter][]를 통해
-PDF나 HTML로 복사해갈 수 있다.
+이 가이드는 [Transmuter][]를 통해 PDF나 HTML로 복사해갈 수 있다.
 
-[RuboCop][]은 이 스타일 가이드에 기반한
-코드 분석기다.
+[RuboCop][]은 이 스타일 가이드에 기반한 코드 분석기다.
 
 이 가이드의 번역은 다음의 언어들로 되어있다.
 
@@ -87,25 +80,27 @@ PDF나 HTML로 복사해갈 수 있다.
 * [정규식](#정규식)
 * [퍼센트 리터럴](#퍼센트-리터럴)
 * [메타프로그래밍](#메타프로그래밍)
-* [그밖에](#그밖에)
+* [그 밖에](#그 밖에)
 * [도구들](#도구들)
 
 ## 소스 코드 레이아웃
 
-> 거의 모든 사람들이 자신의 것을 제외한 모든 코딩 스타일이 번잡하고 가독성이 떨어진다고 확신한다.
-> 앞문장에서 "자신의 것을 제외한"을 없앤다면 아마도 맞는 말일지도...<br/>
+> 거의 모든 사람들이 자신의 것을 제외한 모든 코딩 스타일이 번잡하고 가독성이
+> 떨어진다고 확신한다. 앞 문장에서 "자신의 것을 제외한"을 없앤다면 아마도 맞는
+> 말일지도...<br/>
 > -- Jerry Coffin (on indentation)
 
-* 소스 파일의 인코딩은 <a name="utf-8"></a>
-  `UTF-8`을 사용하라.
+* <a name="utf-8"></a>
+  소스 파일의 인코딩은 `UTF-8`을 사용하라.
 <sup>[[link](#utf-8)]</sup>
 
 * <a name="spaces-indentation"></a>
- tab은 들여쓰기 단위별로 **스페이스 2칸**을 사용하라. (soft tab 사용). hard tab 사용 안함
+  탭은 들여쓰기 단위별로 **공백 2칸**을 사용하라.(소프트 탭 사용) 하드 탭
+  사용 안 함
 <sup>[[link](#spaces-indentation)]</sup>
 
   ```Ruby
-  # 나쁜 예 - 스페이스 4칸
+  # 나쁜 예 - 공백 4칸
   def some_method
       do_something
   end
@@ -117,18 +112,19 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="crlf"></a>
-  Unix스타일로 줄바꿈 하라. (*BSD/Solaris/Linux/OS X 사용자들은 기본으로 설정되어있다. Windows 사용자에겐 특히 주의가 필요하다.)
+  Unix 스타일로 줄바꿈 하라.(*BSD/Solaris/Linux/OS X 사용자들은 기본으로 설정되어
+  있다. Windows 사용자에겐 특히 주의가 필요하다.)
 <sup>[[link](#crlf)]</sup>
 
-  * 만약 Git을 사용하고 있으면, 다음 설정을 추가함으로써 프로젝트가 Windows 줄바꿈 형식으로
-    강제 설정되는 것을 막을 수 있을 것이다.
+  * 만약 Git을 사용하고 있으면, 다음 설정을 추가함으로써 프로젝트가 Windows
+    줄바꿈 형식으로 강제 설정되는 것을 막을 수 있을 것이다.
 
     ```bash
     $ git config --global core.autocrlf true
     ```
 * <a name="no-semicolon"></a>
-  두 개 이상의 명령문과 표현식을 세미콜론(;)으로 나눠쓰지 말아라.
-  한 줄에 한 개씩 쓰는 것을 권장한다.
+  두 개 이상의 명령문과 표현식을 세미콜론(;)으로 나눠쓰지 말아라. 한 줄에 한
+  개씩 쓰는 것을 권장한다.
 <sup>[[link](#no-semicolon)]</sup>
 
   ```Ruby
@@ -163,20 +159,19 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-single-line-methods"></a>
-  한 줄짜리 메소드를 작성하지 마라.
-  그러한 방식이 비록 현장에서 많이 쓰이긴 하지만, 일부 사람들은 그러한 syntax 사용법이 익숙지 않아
-  선호되지 않는 경우도 있기 때문이다.
-  어쨌든 한 줄에는 하나 이상의 메소드가 표현되어선 안된다.
+  한 줄짜리 메소드를 작성하지 마라. 그런 방식이 비록 현장에서 많이 쓰이긴 하지만,
+  그러한 syntax 사용법이 익숙지 않아 좋아하지 않는 경우도 있기 때문이다. 어쨌든
+  한 줄에는 하나 이상의 메소드가 표현되어선 안 된다.
 <sup>[[link](#no-single-line-methods)]</sup>
 
   ```Ruby
   # 나쁜 예
   def too_much; something; something_else; end
 
-  # 나쁘지 않은 예 -  처음의 ;(세미콜론)은 필요
+  # 나쁘지 않은 예 - 처음의 ;(세미콜론)은 필요
   def no_braces_method; body end
 
-  # 나쁘지 않은 예 - 두번째의 ;는 선택사항
+  # 나쁘지 않은 예 - 두 번째의 ;는 선택사항
   def no_braces_method; body; end
 
   # 나쁘지 않은 예 - 문법은 맞지만, ;이 없으면 가독성이 떨어짐
@@ -188,7 +183,7 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 
-  본문이 비어있는 메서드는 이 규칙에서 예외다.
+  본문이 비어있는 메소드는 이 규칙에서 예외다.
 
   ```Ruby
   # 좋은 예
@@ -196,9 +191,9 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="spaces-operators"></a>
-  연산자 전후, 콤마 뒤, 콜론과 세미콜론 뒤, `{`의 전후, `}`의 앞에 공백(space)을 써라.
-  공백은 Ruby 인터프리터에는 (대부분의 경우) 중요하지 않지만,
-  적절한 사용은 읽기 쉬운 코드를 작성할 수 있는 열쇠다.
+  연산자 전후, 콤마 뒤, 콜론과 세미콜론 뒤, `{`, `}`의 전후에 공백(space)을
+  써라. 공백은 루비 인터프리터에는 (대부분의 경우) 중요하지 않지만 적절하게
+  사용하면 읽기 쉬운 코드를 작성할 수 있다.
 <sup>[[link](#spaces-operators)]</sup>
 
   ```Ruby
@@ -208,7 +203,7 @@ PDF나 HTML로 복사해갈 수 있다.
   class FooError < StandardError; end
   ```
 
-  유일한 예외는 연산자에 대한 지수 연산자다.
+  유일한 예외는 지수 연산자다.
 
   ```Ruby
   # 나쁜 예
@@ -217,36 +212,39 @@ PDF나 HTML로 복사해갈 수 있다.
   # 좋은 예
   e = M * c**2
   ```
-  `{` 와 `}`는 구문의 명확화를 위해 쓸만한 가치가 있는데,
-  그 이유는 string에서 삽입구를 넣고 싶을 때뿐만 아니라 블록이나 해시 구문에 사용될 수 있기 때문이다.
-  해시 구문에서는 다음 두 가지 스타일이 허용된다.
+  `{`, `}` 전후의 공백은 구문을 명확하게 하기 위해 쓸 만한데, 그 이유는
+  문자열에서 삽입 구(embedded expression)를 넣고 싶을 때뿐만 아니라 블록이나
+  해시문에 사용될 수 있기 때문이다. 해시문에서는 다음 두 가지 스타일이
+  허용된다.
 
   ```Ruby
-  # 좋은 예 -  {뒤와 }앞에 스페이스
+  # 좋은 예 - {뒤와 }앞에 공백
   { one: 1, two: 2 }
 
-  # 좋은 예 - {뒤 와 }앞에 스페이스 없이
+  # 좋은 예 - {뒤 와 }앞에 공백 없이
   {one: 1, two: 2}
   ```
 
-  첫 번째 방법이 조금 더 읽기 좋다(그리고 일반적인 루비 커뮤니티에서 확실히 인기가 있다).
-  두 번째 방법은 블록과 해시를 시각적으로 구별화 수 있다는 점에서 장점이 있다.
+  첫 번째 방법이 조금 더 읽기 좋다.(그리고 루비 커뮤니티에서 확실히 더 인기가
+  있다.) 두 번째 방법은 블록과 해시를 시각적으로 구별화 수 있는 장점이 있다.
   무엇이든 하나를 선택하면, 일관적으로 적용하자.
 
-  embedded expression를 쓰는 데에도, 역시 두 가지 옵션이 허용된다.
+  삽입 구를 쓸 때도, 양쪽 다 허용된다.
 
   ```Ruby
-  # 좋은 예 - 스페이스가 없음
+  # 좋은 예 - 공백이 없음
   "string#{expr}"
 
   # 괜찮은 예 - 분명히 가독성이 좋음
   "string#{ expr }"
   ```
 
-  첫번째 스타일은 매우 인기있고, 일반적으로 고수하는 방식이다. 반대로 두번째 스타일은 (확실히) 좀더 읽기 좋다.  해시와 마찬가지로- 하나를 선택하고, 일관적으로 적용하자.
+  첫 번째 스타일은 매우 인기 있고, 일반적으로 고수하는 방식이다. 반대로 두 번째
+  스타일은 (확실히) 좀 더 읽기 좋다. 해시와 마찬가지로- 하나를 선택하고,
+  일관적으로 적용하자.
 
 * <a name="no-spaces-braces"></a>
-  `(`, `[`뒤 또는 `]`, `)`앞에 스페이스가 없음
+  `(`, `[`뒤 또는 `]`, `)` 앞에 공백을 넣지 않는다.
 <sup>[[link](#no-spaces-braces)]</sup>
 
   ```Ruby
@@ -255,7 +253,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-space-bang"></a>
-  `!`뒤에 스페이스가 없음.
+  `!` 뒤에 공백을 넣지 않는다.
 <sup>[[link](#no-space-bang)]</sup>
 
   ```Ruby
@@ -267,7 +265,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-space-inside-range-literals"></a>
-  레인지문에는 스페이스가 없음.
+  레인지문에는 공백을 넣지 않는다.
 <sup>[[link](#no-space-inside-range-literals)]</sup>
 
     ```Ruby
@@ -281,8 +279,9 @@ PDF나 HTML로 복사해갈 수 있다.
     ```
 
 * <a name="indent-when-to-case"></a>
-  `when`은 `case`와 같은 깊이로 들여 쓰자. 많은 사람들이 동의할 수 없다는 것을 알지만,
-  "The RubyProgramming Language"와 "Programming Ruby"에 성립된 스타일이다.
+  `when`은 `case`와 같은 깊이로 들여 쓰자. 많은 사람들이 동의할 수 없다는 것을
+  알지만, "The RubyProgramming Language"와 "Programming Ruby"에서 사용하는
+  스타일이다.
 <sup>[[link](#indent-when-to-case)]</sup>
 
   ```Ruby
@@ -312,8 +311,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="indent-conditional-assignment"></a>
-  조건식의 결과를 변수에 대입하는 경우,
-  그 가지(case)의 일반적인 정렬을 유지하라.
+  조건식의 결과를 변수에 대입하는 경우, 그 가지(case)의 일반적인 정렬을 유지하라.
 <sup>[[link](#indent-conditional-assignment)]</sup>
 
   ```Ruby
@@ -349,7 +347,7 @@ PDF나 HTML로 복사해갈 수 있다.
              calc_something_else
            end
 
-  # 좋은 예 (가로 폭의 효율이 약간 더 좋음)
+  # 좋은 예(가로 폭의 효율이 약간 더 좋음)
   kind =
     case year
     when 1850..1889 then 'Blues'
@@ -387,8 +385,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-trailing-params-comma"></a>
-  메서드 호출의 마지막 인수 뒤에 쉼표를 피한다.
-  인수가 여러 줄로 나누어져 있지 않을 때는 특히 피한다
+  메소드 호출의 마지막 인수 뒤에 쉼표를 피한다. 인수가 여러 줄로 나누어져 있지
+  않을 때는 특히 피한다.
 <sup>[[link](#no-trailing-params-comma)]</sup>
 
   ```Ruby
@@ -407,8 +405,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="spaces-around-equals"></a>
-  메소드의 인수에 기본 값을 대입할 때에는,
-  `=`연산자 주변에 스페이스를 이용하라:
+  메소드의 인수에 기본 값을 대입할 때에는, `=` 연산자 주변에 공백을 넣어라.
 <sup>[[link](#spaces-around-equals)]</sup>
 
   ```Ruby
@@ -423,12 +420,12 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 
-  여러 루비 책들이 첫번째 스타일을 권장하지만, 실제로는 두번째 스타일이 좀 더 눈에 잘 띈다.
-  (그리고 분명히 읽기 더 쉽다.)
+  여러 루비 책들이 첫 번째 스타일을 권장하지만, 실제로는 두 번째 스타일이 좀 더
+  눈에 잘 띈다.(그리고 분명히 읽기 더 쉽다.)
 
 * <a name="no-trailing-backslash"></a>
-  불필요하게 \로 줄을 바꾸는 것을 피하라. 실제 프로그래밍시
-  긴 문자열로 인해 줄바꿈되는 것 외에는 줄을 임의로 바꾸지 마라
+  불필요하게 `\`로 줄을 바꾸는 것을 피하라. 실제로 프로그래밍할 때 긴 문자열을
+  자르는 경우 말고는 줄을 임의로 바꾸지 마라.
 <sup>[[link](#no-trailing-backslash)]</sup>
 
   ```Ruby
@@ -436,7 +433,7 @@ PDF나 HTML로 복사해갈 수 있다.
   result = 1 - \
            2
 
-  # 좋은 예 (하지만 여전히 못생겼..)
+  # 좋은 예(하지만 여전히 못생겼다.)
   result = 1 \
            - 2
 
@@ -445,26 +442,27 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="consistent-multi-line-chains"></a>
-    메소드 체이닝이 여러 줄에 걸쳐서 이루어질 때, 일관된 스타일을 정하고 적용하라.
-    루비에서 여러 줄에 걸친 메소드 체이닝 표현 스타일은 크게 두 가지가 있는데, 둘 모두 괜찮은 방식이다.
-    `.`의 위치에 따라 선두법(leading, A방식)과 후방법(trailing, B방식)이 있다.
+    메소드 연쇄가 여러 줄에 걸쳐서 이루어질 때, 일관된 스타일을 적용하라.
+    루비에서 여러 줄에 걸친 메소드 연쇄 표현 스타일은 크게 두 가지가 있는데,
+    둘 모두 괜찮은 방식이다. `.`의 위치에 따라 선두법(leading, A방식)과
+    후방법(trailing, B방식)이 있다.
 <sup>[[link](#consistent-multi-line-chains)]</sup>
 
   * **(A방식)** 연쇄적인 메소드 호출이 서로 다른 줄에 걸쳐 연결되어 있을 때,
-    두번째 라인에 `.`을 두라.
+    두 번째 라인에 `.`을 두라.
 
     ```Ruby
-    # 나쁜 예 - 두번째 줄을 이해하기 위해서 첫번째 라인을 찾아야 함
+    # 나쁜 예 - 두 번째 줄을 이해하기 위해서 첫 번째 라인을 찾아야 함
     one.two.three.
       four
 
-    # 좋은 예 - 두번째 줄에서 어떤일이 일어나는지 즉시 알 수 있음
+    # 좋은 예 - 두 번째 줄에서 어떤일이 일어나는지 즉시 알 수 있음
     one.two.three
       .four
     ```
 
   * **(B방식)** 연쇄적인 메소드 호출이 서로 다른 줄에 걸쳐 연결되어 있을 때,
-  이를 명확히 하기 위해 첫번째 줄에 dot(.)을 포함시키십시오.
+    이를 명확히 하기 위해 첫 번째 줄에 `.`을 포함시켜라.
 
     ```Ruby
     # 나쁜 예 - 메소드 연쇄가 이어지는지 알기 위해서 다음 줄을 읽을 필요가 있음
@@ -480,20 +478,20 @@ PDF나 HTML로 복사해갈 수 있다.
   [여기](https://github.com/bbatsov/ruby-style-guide/pull/176)에서 볼 수 있다.
 
 * <a name="no-double-indent"></a>
-    메서드 호출이 여러 줄에 걸쳐 일어날 경우 인수들을 적절히 정렬하라.
-    라인 길이 제한으로 인수들을 정렬하기가 적절치 않을 때에는 두번째 인수부터
-    들여쓰기를 한 칸씩(single indent) 하되, 이 때 첫번째 인수가 들여쓰기
-    이전에도 줄바뀜 현상이 없는지 확인해야 된다.
-    (아래 세번째 예에서 to:'bob@example.com' (첫번째 인수)가 줄이 넘어가면 네 번째 예처럼 작성하면 됨)
+    메소드 호출이 여러 줄에 걸쳐 일어날 경우 인수들을 적절히 정렬하라.
+    라인 길이 제한으로 인수들을 정렬하기 어려울 때에는 두 번째 인수부터 한 칸
+    들여쓰기를(single indent) 하되, 이 때 첫 번째 인수가 들여쓰기 이전에 줄바꿈이
+    없었는지 확인해야 된다.(아래 세 번째 예에서 to:'bob@example.com' (첫 번째
+    인수)의 줄이 넘어가면 네 번째 예처럼 작성하면 된다.)
 <sup>[[link](#no-double-indent)]</sup>
 
   ```Ruby
-  # 처음 상태 (줄이 너무 길다)
+  # 처음 상태(줄이 너무 길다)
   def send_mail(source)
     Mailer.deliver(to: 'bob@example.com', from: 'us@example.com', subject: 'Important message', body: source.text)
   end
 
-  # 나쁜 예 (들여쓰기 두번)
+  # 나쁜 예(들여쓰기 두번)
   def send_mail(source)
     Mailer.deliver(
         to: 'bob@example.com',
@@ -510,7 +508,7 @@ PDF나 HTML로 복사해갈 수 있다.
                    body: source.text)
   end
 
-  # 좋은 예 (보통의 들여쓰기)
+  # 좋은 예(보통의 들여쓰기)
   def send_mail(source)
     Mailer.deliver(
       to: 'bob@example.com',
@@ -555,12 +553,12 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="rdoc-conventions"></a>
-    RDoc과 API 문서의 컨벤션을 이용하라.
-    `def`와 명령 블록 사이에 빈 줄을 넣지 마라.
+  RDoc과 API 문서의 컨벤션을 이용하라.
+  `def`와 명령 블록 사이에 빈 줄을 넣지 마라.
 <sup>[[link](#rdoc-conventions)]</sup>
 
 * <a name="80-character-limits"></a>
-  한 행에는 80자까지만 씁시다.
+  한 행에는 80자까지만 쓴다.
 <sup>[[link](#80-character-limits)]</sup>
 
 * <a name="no-trailing-whitespace"></a>
@@ -572,8 +570,8 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#newline-eof)]</sup>
 
 * <a name="no-block-comments"></a>
-  블록 형태의 주석을 사용하지 마라. 앞에 공백이 들어가면 작동하지 않고,
-  일반 주석과 달리 쉽게 발견하기 어렵다.
+  블록 형태의 주석을 사용하지 마라. 앞에 공백이 들어가면 작동하지 않고, 일반
+  주석과 달리 쉽게 발견하기 어렵다.
 <sup>[[link](#no-block-comments)]</sup>
 
   ```Ruby
@@ -591,9 +589,8 @@ PDF나 HTML로 복사해갈 수 있다.
 ## 구문
 
 * <a name="double-colons"></a>
-  `::`는 상수(클래스나 모듈 포함)와
-   생성자(`Array()` 또는 `Nokogiri::HTML()`같은)를 참조할 때만 사용하라.
-  일반 메소드 호출에서는 `::`를 쓰지 마라.
+  `::`는 상수(클래스나 모듈 포함)와 생성자(`Array()` 또는 `Nokogiri::HTML()`
+  같은)를 참조할 때만 사용하라. 일반 메소드 호출에서는 `::`를 쓰지 마라.
 <sup>[[link](#double-colons)]</sup>
 
   ```Ruby
@@ -609,8 +606,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="method-parens"></a>
-  파라메터가 있을 때 `def`와 괄호를 함께 사용하라.
-  받을 파라메터가 없을 때에는, 괄호를 제거하라.
+  매개변수가 있을 때 `def`와 괄호를 함께 사용하라. 받을 매개변수가 없을 때에는
+  괄호를 제거하라.
 <sup>[[link](#method-parens)]</sup>
 
    ```Ruby
@@ -636,11 +633,10 @@ PDF나 HTML로 복사해갈 수 있다.
    ```
 
 * <a name="no-for-loops"></a>
-  `for`을 쓸 때에는 정확히 그 용법을 알고 있을 때에만 사용해야 한다.
-  대개의 경우 반복자(iterator)가 `for` 대신 사용된다.
-  `for` 구문은 `each` 의 관점에서 실행되기 때문에 일종의 우회적인 방식을 사용하지만,
-  `each` 용법과는 다른 점이 있다.
-  즉, `for`은 `each`와는 다르게 새로운 영역을 생성하는 것이 아니기 때문에,
+  `for`을 쓸 때에는 정확히 그 용법을 알고 있을 때에만 사용해야 한다. 대부분
+  반복자(iterator)가 `for` 대신 사용된다. `for` 구문은 `each`의 관점에서
+  실행되기 때문에 일종의 우회적인 방식을 사용하지만, `each` 용법과는 다른 점이
+  있다. 즉, `for`는 `each`와는 다르게 새로운 영역을 생성하는 것이 아니기 때문에,
   `for` 구문 내부에서 정의된 변수들은 `for` 외부에서도 접근 가능하다.
 <sup>[[link](#no-for-loops)]</sup>
 
@@ -679,8 +675,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="same-line-condition"></a>
-  조건문의 내용이 여러 줄일 때,
-  조건식은 항상 `if/unless`와 같은 줄에 붙여 써라.
+  조건문의 내용이 여러 줄일 때, 조건식은 항상 `if/unless`와 같은 줄에 붙여 써라.
 <sup>[[link](#same-line-condition)]</sup>
 
   ```Ruby
@@ -699,8 +694,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="ternary-operator"></a>
-  `if/then/else/end` 구문 보다, 삼항연산자(`?:`)를 더욱 선호한다.
-  그게 좀더 명쾌하고 간결하다.
+  `if/then/else/end` 구문 보다, 삼항 연산자(`?:`)를 더욱 선호한다. 그게 좀 더
+  명쾌하고 간결하다.
 <sup>[[link](#ternary-operator)]</sup>
 
   ```Ruby
@@ -712,9 +707,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-nested-ternary"></a>
-  삼항연산자는 하나의 식마다 한 개의 표현식을 씁시다.
-  즉, 삼항연산자는 중첩해서 써서는 안된다. 그러한 경우는
-  `if/else`구문을 사용하는 것이 좋다.
+  삼항 연산자는 하나의 식마다 한 개의 표현식을 쓴다. 즉, 삼항 연산자는 중첩해서
+  써서는 안 된다. 그러한 경우는 `if/else` 구문을 사용하는 것이 좋다.
 <sup>[[link](#no-nested-ternary)]</sup>
 
   ```Ruby
@@ -729,7 +723,7 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 * <a name="no-semicolon-ifs"></a>
-  `if x; ...`는 사용하지마라. 대신 삼항연산자를 사용하라.
+  `if x; ...`는 사용하지마라. 대신 삼항 연산자를 사용하라.
 <sup>[[link](#no-semicolon-ifs)]</sup>
 
   ```Ruby
@@ -762,8 +756,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="one-line-cases"></a>
-  하나의 행의 경우에는 `when x then ...`를 이용하라.
-  대안인 `when x:...`은 Ruby 1.9부터 없어졌다.
+  하나의 행의 경우에는 `when x then ...`을 이용하라. 대안인 `when x:...`는 루비
+  1.9에서 없어졌다.
 <sup>[[link](#one-line-cases)]</sup>
 
 * <a name="no-when-semicolons"></a>
@@ -806,8 +800,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-and-or-or"></a>
-  `and`와 `or`은 금지어다. 그만한 가치가 없다.
-  대신에 항상 `&&`와 `||`를 써라.
+  `and`와 `or`은 금지어다. 그만한 가치가 없다. 대신에 항상 `&&`와 `||`를 써라.
 <sup>[[link](#no-and-or-or)]</sup>
 
   ```Ruby
@@ -817,7 +810,7 @@ PDF나 HTML로 복사해갈 수 있다.
     do_something
   end
 
-  # 제어 구문
+  # 제어문
   document.saved? or document.save!
 
   # 좋은 예
@@ -826,18 +819,17 @@ PDF나 HTML로 복사해갈 수 있다.
     do_something
   end
 
-  # 제어 구문
+  # 제어문
   document.saved? || document.save!
   ```
 
 * <a name="no-multiline-ternary"></a>
-  여러 줄의 조건구문에는 `?:`(삼항연산자)를 피하라;
-  대신 `if/unless`를 사용하라.
+  여러 줄의 조건문에는 `?:`(삼항 연산자)를 피하라. 대신 `if/unless`를 사용하라.
 <sup>[[link](#no-multiline-ternary)]</sup>
 
 * <a name="if-as-a-modifier"></a>
   구문이 한 줄일 때에는, 같은 줄 끝에 `if/unless`를 사용하는 것이 좋다.
-  또 다른 좋은 표현방법은 `&&/||`과 같은 제어 구문을 쓰는 것이다.
+  또 다른 좋은 표현방법은 `&&/||`과 같은 제어문을 쓰는 것이다.
 <sup>[[link](#if-as-a-modifier)]</sup>
 
   ```Ruby
@@ -854,7 +846,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-multiline-if-modifiers"></a>
-  간단하지 않고 여러 줄에 걸친 구문 블록에는, 한정자 `if/unless`를 피하라.
+  간단하지 않고 여러 줄에 걸친 구문 블록에는 한 줄 `if/unless`를 피하라.
 <sup>[[link](#no-multiline-if-modifiers)]</sup>
 
   ```Ruby
@@ -872,7 +864,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="unless-for-negatives"></a>
-  `if`뒤의 부정적인 조건(또는 `||`제어 구문)보다는 `unless`가 더 좋다.
+  `if` 뒤의 부정적인 조건보다는 `unless`(나 `||`)가 더 좋다.
 <sup>[[link](#unless-for-negatives)]</sup>
 
   ```Ruby
@@ -910,7 +902,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-parens-if"></a>
-  한 개의 `if/unless/while/until`구문의 조건식 앞뒤에는 괄호를 사용하지 마라.
+  한 개의 `if/unless/while/until` 구문의 조건식 앞뒤에는 괄호를 사용하지 마라.
 <sup>[[link](#no-parens-if)]</sup>
 
   ```Ruby
@@ -926,7 +918,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-multiline-while-do"></a>
-  `while/until`문의 내용이 여러 줄일 때에는, `while/until condition do`를 쓰지 마라.
+  `while/until` 문의 내용이 여러 줄일 때에는, `while/until condition do`를 쓰지
+  마라.
 <sup>[[link](#no-multiline-while-do)]</sup>
 
   ```Ruby
@@ -964,7 +957,6 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="until-for-negatives"></a>
-  Favor `until` over `while` for negative conditions.
   `while`에 부정적인 조건을 쓰기보단 `until`을 쓰는 것이 좋다.
 <sup>[[link](#until-for-negatives)]</sup>
 
@@ -977,7 +969,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="infinite-loop"></a>
-  무한 루프가 필요할 때에는, `while/until`보다 `Kernel#loop`를 쓰는 것이 더 좋다.
+  무한 반복문이 필요할 때에는, `while/until`보다 `Kernel#loop`를 쓰는 것이 더 좋다.
 <sup>[[link](#infinite-loop)]</sup>
 
     ```ruby
@@ -997,9 +989,8 @@ PDF나 HTML로 복사해갈 수 있다.
     ```
 
 * <a name="loop-with-break"></a>
-  종결조건을 나중에 판정하는 루프를 쓸 때,
-  `begin/end/until` 또는 `begin/end/while`보다는
-  `Kernel#loop`와 `break`를 사용하라.
+  종결조건을 나중에 판정하는 반복문을 쓸 때, `begin/end/until` 또는
+  `begin/end/while`보다는 `Kernel#loop`와 `break`를 사용하라.
 <sup>[[link](#loop-with-break)]</sup>
 
   ```Ruby
@@ -1018,11 +1009,11 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-dsl-parens"></a>
-  메소드가 다음 세 가지인 경우 파라메터를 감싸는 괄호를 생략하라.
-  1. 내장 DSL(예를들어 Rake, Rails, RSpec 등)의 일부인 메소드
-  2. 루비에서 "키워드" 역할을 하고 있는 메서드 (예를들어 `attr_reader`, `puts`)
-  3. attribute 접근 메서드
-  이외의 다른 모든 메서드 호출시 사용되는 파라메터들은 괄호로 감싸야 한다.
+  메소드가 다음 세 가지인 경우 매개변수를 감싸는 괄호를 생략하라.
+  1. 내장 DSL(예를 들어 Rake, 레일즈, RSpec 등)의 일부인 메소드
+  2. 루비에서 "키워드" 역할을 하고 있는 메소드(예를 들어 `attr_reader`, `puts`)
+  3. attribute 접근 메소드 이외의 다른 모든 메소드 호출 시 사용되는 매개변수들은
+     괄호로 감싸야 한다.
 <sup>[[link](#no-dsl-parens)]</sup>
 
   ```Ruby
@@ -1044,7 +1035,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-braces-opts-hash"></a>
-  옵션들이 해시를 암시한다면 가장 바깥 중괄호를 생략한다.
+  옵션들이 해시라면 가장 바깥 중괄호를 생략한다.
 <sup>[[link](#no-braces-opts-hash)]</sup>
 
   ```Ruby
@@ -1088,11 +1079,10 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="single-line-blocks"></a>
-  한 줄짜리 블록에서는 `do...end` 보다 `{...}` 가 권장된다.
-  여러 줄짜리 블록에 대해 `{...}`를 사용하는 것은 피하라. (여러 줄이 연속되면 항상 보기에 안 좋다.)
-  "제어 흐름"과 "메소드 정의"에는 항상 `do...end`를 사용하라.
-  (예. Rakefiles나 특정 DSL내에서)
-  연속적(chaning)일 때는 `do...end`를 피하라.
+  한 줄짜리 블록에서는 `do...end`보다 `{...}`가 권장된다. 여러 줄짜리 블록에
+  대해 `{...}`를 사용하는 것은 피하라.(줄이 많으면 항상 보기에 안 좋다.)
+  "제어 흐름"과 "메소드 정의"에는 항상 `do...end`를 사용하라.(예. Rakefile이나
+  특정 DSL 내에서) 연속적(chaining)일 때는 `do...end`를 피하라.
 <sup>[[link](#single-line-blocks)]</sup>
 
   ```Ruby
@@ -1115,15 +1105,15 @@ PDF나 HTML로 복사해갈 수 있다.
   names.select { |name| name.start_with?('S') }.map { |name| name.upcase }
   ```
 
-  혹자는 {...}를 사용하는 여러 줄에 걸친 체이닝(chaining)이 보기에 괜찮다고 주장할 수도 있겠지만,
-  정말 그러한지는 다음 사항들에 대해 자문해봐야 한다.
-  그렇게 작성된 코드가 가독성이 좋은지? 또 블록 내부의 내용이 깔끔하게 메서드로 추출 가능한지?
-  등에 대해서 말이다.
+  어떤 사람은 {...}를 사용하는 여러 줄에 걸친 연쇄(chaining)다 보기에 괜찮다고
+  주장할 수도 있겠지만 정말 그러한지는 다음 사항들에 대해 자문해봐야 한다.
+  그렇게 작성된 코드가 가독성이 좋은가? 또 블록 내부의 내용이 깔끔하게 메소드로
+  추출 가능한가? 등에 대해서 말이다.
 
 * <a name="block-argument"></a>
-  다른 블록에 인수만 넘기는 블록 구문 쓰는 것을 피하기 위해,
-  명시적으로 블록 인수를 사용하는 것을 고려해보라.
-  블록이 `proc`으로 변하면서, 성능에 영향을 주는 것을 조심하라.
+  다른 블록에 인수만 넘기는 블록문 쓰는 것을 피하기 위해, 명시적으로 블록
+  인수를 사용하는 것을 고려해보라. 블록이 `proc`으로 변하면서, 성능에 영향을
+  주는 것을 조심해야 한다.
 <sup>[[link](#block-argument)]</sup>
 
   ```Ruby
@@ -1149,7 +1139,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-explicit-return"></a>
-  제어구문에 불필요한 `return`을 피하라.
+  제어문에 불필요한 `return`을 피하라.
 <sup>[[link](#no-explicit-return)]</sup>
 
   ```Ruby
@@ -1165,7 +1155,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-self-unless-required"></a>
-  불필요한 `self`를 피하라. (이건, self write accessor를 호출할 때만 필요하다.)
+  불필요한 `self`를 피하라.(이건, self write accessor를 호출할 때만 필요하다.)
 <sup>[[link](#no-self-unless-required)]</sup>
 
   ```Ruby
@@ -1189,8 +1179,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-shadowing"></a>
-  당연하지만 지역 변수와 메소드가 같은 것을 의미하지 않을때,
-  지역변수로 메소드를 가리는 것을 피하라.
+  당연하지만 지역 변수와 메소드가 같은 것을 의미하지 않을 때, 지역변수로 메소드를
+  가리는 것을 피하라.
 <sup>[[link](#no-shadowing)]</sup>
 
   ```Ruby
@@ -1220,18 +1210,19 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="safe-assignment-in-condition"></a>
-  배정문이 괄호안에 싸인 경우를 제외하고는, 조건식에서 `=`(배정 연산자)를 써서 값을 반환하지 마라.
-  이것은 *조건문에서 안정한 대입*이라는 말로 루비사용자들 사이에서는 상당히 유명한 관용표현이다.
+  배정문이 괄호안에 싸인 경우를 제외하고는, 조건식에서 `=`(배정 연산자)를 써서
+  값을 반환하지 마라. 이것은 *조건문에서 안전하게 대입하기*라 불리는 루비 사용자
+  사이에서는 상당히 유명한 관용 표현이다.
 <sup>[[link](#safe-assignment-in-condition)]</sup>
 
   ```Ruby
-  # 나쁜 예 (+ 주의)
+  # 나쁜 예(+ 주의)
   if v = array.grep(/foo/)
     do_something(v)
     ...
   end
 
-  # 좋은 예 (MRI would still complain, but RuboCop won't)
+  # 좋은 예(MRI would still complain, but RuboCop won't)
   if (v = array.grep(/foo/))
     do_something(v)
     ...
@@ -1283,8 +1274,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-double-pipes-for-bools"></a>
-  boolean 변수에 대해서는 `||=`로 초기화하지 마라.
-  (현재 변수가 `false`일 때, 무슨일이 일어나는지를 고려하라)
+  boolean 변수에 대해서는 `||=`로 초기화하지 마라.(현재 변수가 `false`일 때,
+  무슨 일이 일어날지 생각하라.)
 <sup>[[link](#no-double-pipes-for-bools)]</sup>
 
   ```Ruby
@@ -1296,9 +1287,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="double-amper-preprocess"></a>
-  존재여부를 모르는 전처리 변수에는 `&&=`를 쓴다.
-  `&&=`를 사용하면 값이 존재할 때만 값을 바꾸기 때문에,
-  값 존재 여부를 확인하는 `if`는 없어도 된다.
+  존재여부를 모르는 전처리 변수에는 `&&=`를 쓴다. `&&=`를 사용하면 값이 존재할
+  때만 값을 바꾸기 때문에 값 존재 여부를 확인하는 `if`는 없어도 된다.
 <sup>[[link](#double-amper-preprocess)]</sup>
 
   ```Ruby
@@ -1321,10 +1311,10 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-case-equality"></a>
-  case동등(case equality) 연산자 `===`를 문자 그대로 사용하는 것을 피하라.
-  왜냐하면 그 이름에서 암시하듯, 이 연산자는 암묵적으로 `case`의 (동등 여부 뿐만아니라)
-  상태를 판별하는 데에 사용되도록 고안되었기 때문에,
-  외부에서 본다면 약간 혼란스러운 코드가 된다.
+  case 동등(equality) 연산자 `===`를 사용하는 것을 피하라. 왜냐하면 그 이름에서
+  말해주듯, 이 연산자는 암묵적으로 `case`의(동등 여부뿐만 아니라) 상태를
+  판별하는 데에 사용되도록 고안되었기 때문에, 외부에서 본다면 약간 혼란스러운
+  코드가 된다.
 <sup>[[link](#no-case-equality)]</sup>
 
   ```Ruby
@@ -1341,7 +1331,7 @@ PDF나 HTML로 복사해갈 수 있다.
 
 * <a name="eql"></a>
   `==`로 할수 있을 때에는 `eql?`을 사용하지 마라. `eql?`이 제공하는 엄격한
-  비교는 거의 필요가 없다.
+  비교는 대부분 필요 없다.
 <sup>[[link](#eql)]</sup>
 
   ```Ruby
@@ -1354,9 +1344,9 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-cryptic-perlisms"></a>
-  Perl스타일의 특수 변수(`$:`, `$;`등과 같은 것들)사용을 피하라.
-  그들은 상당히 기괴해보이고, one-liner 스크립트외의 그것들의 사용은 의지를 꺾는다.
-  `English`라이브러리에서 제공하는 인간 친화적인 alias를 사용하라.
+  펄 스타일의 특수 변수(`$:`, `$;` 등)사용을 피하라. 그들은 상당히
+  기괴해 보이고, one-liner 스크립트 외의 그것들의 사용은 읽기 힘들다. `English`
+  라이브러리에서 제공하는 인간 친화적인 alias를 사용하라.
 <sup>[[link](#no-cryptic-perlisms)]</sup>
 
   ```Ruby
@@ -1381,19 +1371,18 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="parens-as-args"></a>
-  메소드가 시작할 때의 첫번째 인수가 괄호로 시작하면,
-  메소드 호출시 항상 괄호를 사용하라.
-  예를 들면, `f((3 + 2) + 1)`처럼 쓴다.
+  메소드가 시작할 때의 첫 번째 인수가 괄호로 시작하면 메소드 호출 시 항상 괄호를
+  사용하라. 예를 들면, `f((3 + 2) + 1)`처럼 쓴다.
 <sup>[[link](#parens-as-args)]</sup>
 
 * <a name="always-warn-at-runtime"></a>
-  항상 `-w`옵션과 함께 루비 인터프리터를 실행하라. 그러면
-  위의 규칙들을 잊어버렸을 때, 너에게 경고를 줄 것이다.
+  항상 `-w` 옵션과 함께 루비 인터프리터를 실행하라. 그러면 위의 규칙들을
+  잊어버렸을 때 경고할 것이다.
 <sup>[[link](#always-warn-at-runtime)]</sup>
 
 * <a name="lambda-multi-line"></a>
-  한 줄짜리 본문 블록에 새로운 lambda 문법구문을 사용하라.
-  `lambda` 메소드는 여러 줄이 있는 블록에 써라.
+  한 줄짜리 본문 블록에 새로운 lambda 구문을 사용하라. `lambda` 메소드는
+  여러 줄이 있는 블록에 써라.
 <sup>[[link](#lambda-multi-line)]</sup>
 
   ```Ruby
@@ -1430,8 +1419,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="proc-call"></a>
-  lambda나 proc 모두
-  `proc[]`이나 `proc.()` 보다 `proc.call()`을 권장한다.
+  lambda나 proc에서 `proc[]`이나 `proc.()`보다 `proc.call()`을 권장한다.
 <sup>[[link](#proc-call)]</sup>
 
   ```Ruby
@@ -1449,10 +1437,9 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="underscore-unused-vars"></a>
-  사용하지 않는 블록 인수나, 지역변수에는 `_`를 앞에 붙여라.
-  (설명이 좀 없더라도)`_`만 쓰는 것도 가능하다.
-  이 컨벤션은 루비 인터프리터와 Robocop과 같은 툴에 의해 인지되고,
-  사용하지 않는 변수에 대한 경고를 숨긴다.
+  사용하지 않는 블록 인수나, 지역변수에는 `_`를 앞에 붙여라.(설명이 좀 없더라도)
+  `_`만 쓰는 것도 가능하다. 이 컨벤션은 루비 인터프리터와 Robocop과 같은 툴에
+  의해 인지되고, 사용하지 않는 변수에 대한 경고를 숨긴다.
 <sup>[[link](#underscore-unused-vars)]</sup>
 
   ```Ruby
@@ -1482,17 +1469,16 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="global-stdout"></a>
-  `STDOUT/STDERR/STDIN`보다는 `$stdout/$stderr/$stdin`를 사용하라.
-  `STDOUT/STDERR/STDIN`은 상수이며,
-  Ruby에서의 상수는 실제로 재대입 할 수 있다.(다른 스트림으로 리디렉션도 가능)
-  물론 재대입하면 인터프리터의 경고가 나올 것이다.
+  `STDOUT/STDERR/STDIN`보다는 `$stdout/$stderr/$stdin`을 사용하라.
+  `STDOUT/STDERR/STDIN`은 상수이며, 루비에서의 상수는 실제로 재대입 할 수
+  있다.(다른 스트림으로 리디렉션도 가능) 물론 재대입하면 인터프리터의 경고가
+  나올 것이다.
 <sup>[[link](#global-stdout)]</sup>
 
 * <a name="warn"></a>
-  `$stderr.puts`보다는 `warn`을 사용하라.
-  좀더 간결하고 명확한 것을 제외하고라도,
-  `warn`은 필요에 따라 경고를 숨기는 것(`-W0`를 통해 경고 수준을0으로 함으로써 )을
-  허용한다.
+  `$stderr.puts`보다는 `warn`을 사용하라. 좀 더 간결하고 명확할 뿐만 아니라
+  `warn`을 사용하면 필요에 따라 경고를 숨길 수도 있다.(`-W0`를 통해 경고 수준을
+  0으로 함으로써)
 <sup>[[link](#warn)]</sup>
 
 * <a name="sprintf"></a>
@@ -1535,8 +1521,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="splat-arrays"></a>
-  변수가 배열인지 모르겠지만, 그것을 Array로 취급하고 싶 때에는,
-  명시적인 `Array` 체크 대신에 `[*var]` 또는 `Array()`를 사용하라.
+  변수가 배열인지 모르겠지만 그것을 Array로 취급하고 싶을 때에는 명시적인 `Array`
+  체크 대신에 `[*var]` 또는 `Array()`를 사용하라.
 <sup>[[link](#splat-arrays)]</sup>
 
   ```Ruby
@@ -1547,13 +1533,13 @@ PDF나 HTML로 복사해갈 수 있다.
   # 좋은 예
   [*paths].each { |path| do_something(path) }
 
-  # 좋은 예 (좀 더 가독성이 높은)
+  # 좋은 예(좀 더 가독성이 높은)
   Array(paths).each { |path| do_something(path) }
   ```
 
 * <a name="ranges-or-between"></a>
-  복잡한 비교논리를 사용하는 것 대신에,
-  가능하면 범위나 `Comparable#between?`을 사용하라.
+  복잡한 비교논리를 사용하는 것 대신에 가능하면 범위나 `Comparable#between?`을
+  사용하라.
 <sup>[[link](#ranges-or-between)]</sup>
 
   ```Ruby
@@ -1601,7 +1587,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-non-nil-checks"></a>
-  boolean 값을 다룰 때가 아니면, 명시적으로 '`nil`이 아닌 것'을 체크하는 것을 피하라.
+  boolean 값을 다룰 때가 아니면, 명시적으로 '`nil`이 아닌 것'을 체크하는 것을
+  피하라.
 <sup>[[link](#no-non-nil-checks)]</sup>
 
     ```ruby
@@ -1639,11 +1626,12 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#no-flip-flops)]</sup>
 
 * <a name="no-nested-conditionals"></a>
-  제어구문에서 중첩된 조건문은 피하라.
+  제어문에서 중첩된 조건문은 피하라.
 <sup>[[link](#no-nested-conditionals)]</sup>
 
-  유효하지 않은 데이터가 들어갈 수도 있다고 볼 수 있는 경우, 보호구문을 권장한다.
-  보호구문은 가능한 함수에서 빨리 탈출할 수있게 하는 함수 제일 처음에 있는 조건문이다.
+  유효하지 않은 데이터가 들어갈 수도 있는 경우, 보호 구문을 권장한다. 보호
+  구문은 함수에서 가능한 한 빨리 탈출할 수 있게 하는 함수 제일 처음에 있는
+  조건문을 말한다.
 
   ```Ruby
   # 나쁜 예
@@ -1667,7 +1655,7 @@ PDF나 HTML로 복사해갈 수 있다.
   end
   ```
 
-  루프 내에서는 조건문 블록 대신에 `next`를 선호한다.
+  반복문 내에서는 조건문 블록 대신에 `next`를 선호한다.
 
   ```Ruby
   # 나쁜 예
@@ -1686,10 +1674,10 @@ PDF나 HTML로 복사해갈 수 있다.
 
 * <a name="map-find-select-reduce-size"></a>
   `collect`보다는 `map`을, `detect`보다는 `find`를, `find_all`보다는 `select`를,
-  `inject`보다는 `reduce`를, `length`보다는 `size`를 권장한다.
-  이것이 무리한 요구는 아니다; 다른 alias를 써서 가독성이 좋아진다면, 그것도 괜찮다.
-  메소드의 시적인 표현은 Samlltalk언어로 부터 물려받은 것으로, 일반적인 다른 프로그래밍 언어와는 다르다.
-  `select`를 사용하는 이유는 `reject`와 함께 쓰일 때
+  `inject`보다는 `reduce`를, `length`보다는 `size`를 권장한다. 이것이 무리한
+  요구는 아니다. 다른 alias를 써서 가독성이 좋아진다면, 그것도 괜찮다. 메소드의
+  시적인 표현은 Smalltalk 언어로 부터 물려받은 것으로, 일반적인 다른 프로그래밍
+  언어와는 다르다. `select`를 사용하는 이유는 `reject`와 함께 쓰일 때
   `find_all`보다 좀 더 잘 어울리고 이름 자체가 충분한 설명이 되기 때문이다.
 <sup>[[link](#map-find-select-reduce-size)]</sup>
 
@@ -1707,11 +1695,11 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="flat-map"></a>
-  `map`+`flatten`의 조합을 사용하는 것 대신 `flat_map`를 사용하라.
-  이것은 2차 이상의 배열에는 적용되지는 않는다.
-  다시 말해서, `users.first.songs == ['a', ['b','c']]` 이 경우는
-  `flat_map`보다는 `map + flatten`를 사용하라.
-  `flat_map`은 1차원의 배열만 1차원으로 만드는 반면, `flatten`은 모든것을 1차원 배열로 만든다.
+  `map` + `flatten`의 조합을 사용하는 것 대신 `flat_map`을 사용하라. 이것은
+  2차원 이상의 배열에는 적용되지는 않는다. 다시 말해서,
+  `users.first.songs == ['a', ['b','c']]`의 경우는 `flat_map`보다는
+  `map + flatten`를 사용하라. `flat_map`은 1차원의 배열만 1차원으로 만드는 반면
+  `flatten`은 모든 것을 1차원 배열로 만든다.
 <sup>[[link](#flat-map)]</sup>
 
   ```Ruby
@@ -1723,8 +1711,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="reverse-each"></a>
-  `reverse.each`보다는 `reverse_each`를 써라. `reverse_each`는
-  새로운 배열을 할당하지 않는다는 장점이 있다.
+  `reverse.each`보다는 `reverse_each`를 써라. `reverse_each`는 새로운 배열을
+  할당하지 않는다는 장점이 있다.
 <sup>[[link](#reverse-each)]</sup>
 
   ```Ruby
@@ -1737,8 +1725,7 @@ PDF나 HTML로 복사해갈 수 있다.
 
 ## 네이밍
 
-> 프로그래밍에서 단지 진짜로 어려운 것들은 캐시무효화와
-> 이름을 짓는 것이다. <br/>
+> 프로그래밍에서 정말 어려운 것은 캐시무효화와 이름 짓기뿐이다. <br/>
 > -- Phil Karlton
 
 * <a name="english-identifiers"></a>
@@ -1814,18 +1801,18 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="snake-case-files"></a>
-  파일 이름은 `snake_case`로 써라,
-  예.`hello_world.rb`
+  파일 이름은 `snake_case`로 써라.
+  예. `hello_world.rb`
 <sup>[[link](#snake-case-files)]</sup>
 
 * <a name="snake-case-dirs"></a>
-  디렉토리 이름은 `snake_case`로 써라,
-  예.`lib/hello_world/hello_world.rb`.
+  디렉토리 이름은 `snake_case`로 써라.
+  예. `lib/hello_world/hello_world.rb`
 <sup>[[link](#snake-case-dirs)]</sup>
 
 * <a name="one-class-per-file"></a>
-  되도록이면 하나의 소스파일은 하나의 클래스/모듈을 갖도록 하라.
-  파일명은 `CamelCase`로 적힌 클래스/모듈이름을 `snake_case`로 바꾼 것으로 하라.
+  되도록이면 하나의 소스파일은 하나의 클래스/모듈을 갖도록 하라. 파일명은
+  `CamelCase`로 적힌 클래스/모듈이름을 `snake_case`로 바꾼 것으로 하라.
 <sup>[[link](#one-class-per-file)]</sup>
 
 * <a name="screaming-snake-case"></a>
@@ -1841,14 +1828,15 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="bool-methods-qmark"></a>
-  서술형 메소드(boolean값을 반환하는 메소드들)의 이름은 꼭 물음표로 끝나야 한다.(다시말해`Array#empty?`)
-  메소드가 boolean값을 반환하는게 아니라면, 물음표로 끝나선 안된다.
+  서술형 메소드(boolean 값을 반환하는 메소드)의 이름은 꼭 물음표로 끝나야 한다.
+  (예를 들어 `Array#empty?`) 메소드가 boolean 값을 반환하는게 아니라면, 물음표로
+  끝나선 안 된다.
 <sup>[[link](#bool-methods-qmark)]</sup>
 
 * <a name="dangerous-method-bang"></a>
-  잠재적으로 *위험한* 메소드의
-  (다시 말해, `self`나 인수를 수정하는 메소드와 `exit!`(`exit`처럼 finalizers를 실행하지 않는..) 등등이다.)
-  이름은 *위험한*메소드의 안전한 버젼이 존재할 때는 느낌표로 끝낸다.
+  잠재적으로 *위험한* 메소드의(예를 들어, `self`나 인수를 수정하는 메소드와
+  `exit!`(finalizer를 실행하지 않음) 등) 이름은 *위험한* 메소드의 안전한 버전이
+  존재할 때는 느낌표로 끝낸다.
 <sup>[[link](#dangerous-method-bang)]</sup>
 
   ```Ruby
@@ -1902,7 +1890,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#reduce-blocks)]</sup>
 
 * <a name="other-param"></a>
-  이항 연산자를 정의할 때에는, 파라메터 이름을 `other`로 하라.
+  이항 연산자를 정의할 때에는, 매개변수 이름을 `other`로 하라.
   (`<<`와 `[]`는 의미가 달라지므로 이 규칙에서 제외된다.)
 <sup>[[link](#other-param)]</sup>
 
@@ -1914,8 +1902,9 @@ PDF나 HTML로 복사해갈 수 있다.
 
 ## 주석
 
-> 좋은 코드는 가장 좋은 문서이다. 주석을 추가하려고 할 때 스스로에게 물어봐라. "이 주석이 필요 없으려면
-> 코드를 어떻게 만들면 될까?" 코드를 더 잘 작성하여 문서를 명확하게 하자. <br>
+> 좋은 코드는 가장 좋은 문서이다. 주석을 추가하려고 할 때 스스로에게 물어보라.
+> "이 주석이 필요 없으려면 코드를 어떻게 만들면 될까?" 코드를 더 잘 작성하여
+> 문서를 명확하게 하자. <br>
 > -- Steve McConnell
 
 * <a name="no-comments"></a>
@@ -1952,8 +1941,8 @@ PDF나 HTML로 복사해갈 수 있다.
 > -- Russ Olsen
 
 * <a name="refactor-dont-comment"></a>
-  나쁜 코드에 대해서 주석을 달지 마라. 코드가 스스로 설명할 수 있도록 리펙토링 하라.
-  (하거나 안하거나 둘 중 하나다. - '시험삼아 한다'는 것은 없다. -- Yoda)
+  나쁜 코드에 대해서 주석을 달지 마라. 코드가 스스로 설명할 수 있도록 리펙토링
+  하라.(하거나 안 하거나 둘 중 하나다. 노력했다는 것은 없다. -- Yoda)
 <sup>[[link](#refactor-dont-comment)]</sup>
 
 ### 주석 어노테이션
@@ -1967,8 +1956,8 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#annotate-keywords)]</sup>
 
 * <a name="indent-annotations"></a>
-  만약 설명이 여러 줄인 경우 다음 줄은 `#`을 쓰고 세 칸 들여쓰기 한다.
-  (한 칸은 일반적으로 하고, 두 칸은 들여쓰기 목적)
+  만약 설명이 여러 줄인 경우 다음 줄은 `#`을 쓰고 세 칸 들여쓰기 한다.(한 칸은
+  일반적으로 하고, 두 칸은 들여쓰기 목적)
 <sup>[[link](#indent-annotations)]</sup>
 
   ```Ruby
@@ -1980,7 +1969,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="rare-eol-annotations"></a>
-  설명이 명확하지 않고 중복되는 경우 예외적으로 라인 뒷쪽에 어노테이션을 작성한다. (규칙은 아님)
+  설명이 명확하지 않고 중복되는 경우 예외적으로 라인 뒤쪽에 어노테이션을
+  작성한다.(규칙은 아님)
 <sup>[[link](#rare-eol-annotations)]</sup>
 
   ```Ruby
@@ -1998,16 +1988,18 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#fixme)]</sup>
 
 * <a name="optimize"></a>
-  `OPTIMIZE`는 코드가 느리거나 비효율적이라서 성능상 문제가 생기는 경우에 사용한다.
+  `OPTIMIZE`는 코드가 느리거나 비효율적이라서 성능상 문제가 생기는 경우에
+  사용한다.
 <sup>[[link](#optimize)]</sup>
 
 * <a name="hack"></a>
-  `HACK`은 코드에 냄새가 있는 것 같아 이야기해보고 리팩토링이 필요한 경우 사용한다.
+  `HACK`은 코드에 냄새가 있는 것 같아 이야기해 보고 리팩토링이 필요한 경우
+  사용한다.
 <sup>[[link](#hack)]</sup>
 
 * <a name="review"></a>
-  `REVIEW`는 의도한대로 동작하는지 확인해야하는 경우에 사용한다. 에를들어: `REVIEW: Are we sure
-  this is how the client does X currently?`
+  `REVIEW`는 의도한 대로 동작하는지 확인해야 하는 경우에 사용한다. 예를 들어:
+  `REVIEW: Are we sure this is how the client does X currently?`
 <sup>[[link](#review)]</sup>
 
 * <a name="document-annotations"></a>
@@ -2038,15 +2030,15 @@ PDF나 HTML로 복사해갈 수 있다.
     # 다른 매크로들이 있다면 그 다음에 나온다.
     validates :name
 
-    # public 클래스 메서드가 다음 줄에 온다.
+    # public 클래스 메소드가 다음 줄에 온다.
     def self.some_method
     end
 
-    # public 인스턴스 메서드가 따라서 나온다.
+    # public 인스턴스 메소드가 따라서 나온다.
     def some_method
     end
 
-    # protected와 private 메서드는 마지막 근처에 모아둔다.
+    # protected와 private 메소드는 마지막 근처에 모아둔다.
     protected
 
     def some_protected_method
@@ -2060,8 +2052,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="file-classes"></a>
-  한 줄 이상의 클래스는 클래스 안에 선언하지 않는다. 이런 경우에는 클래스 이름의 폴더를 만들고 각각의
-  inner 클래스를 별도의 파일로 분리해 보는 것도 좋을 것 같다.
+  한 줄 이상의 클래스는 클래스 안에 선언하지 않는다. 이런 경우에는 클래스 이름의
+  폴더를 만들고 각각의 inner 클래스를 별도의 파일로 분리해 보는 것도 좋다.
 <sup>[[link](#file-classes)]</sup>
 
   ```Ruby
@@ -2070,41 +2062,41 @@ PDF나 HTML로 복사해갈 수 있다.
   # foo.rb
   class Foo
     class Bar
-      # 안에 30개의 메서드
+      # 안에 30개의 메소드
     end
 
     class Car
-      # 안에 20개의 메서드
+      # 안에 20개의 메소드
     end
 
-    # 안에 30개의 메서드
+    # 안에 30개의 메소드
   end
 
   # 좋은 예
 
   # foo.rb
   class Foo
-    # 안에 30개의 메서드
+    # 안에 30개의 메소드
   end
 
   # foo/bar.rb
   class Foo
     class Bar
-      # 안에 30개의 메서드
+      # 안에 30개의 메소드
     end
   end
 
   # foo/car.rb
   class Foo
     class Car
-      # 안에 20개의 메서드
+      # 안에 20개의 메소드
     end
   end
   ```
 
 * <a name="modules-vs-classes"></a>
-  클래스 메서드만 가지는 클래스는 모듈로 선언하는 것이 더 좋다. 클래스는 인스턴스를 생성해서 사용할 때만
-  사용한다.
+  클래스 메소드만 가지는 클래스는 모듈로 선언하는 것이 더 좋다. 클래스는
+  인스턴스를 생성해서 사용할 때만 사용한다.
 <sup>[[link](#modules-vs-classes)]</sup>
 
   ```Ruby
@@ -2132,8 +2124,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="module-function"></a>
-  모듈의 인스턴스 메서드를 클래스 메서드로 바꿀 때는 `extend self`보다 `module_function`을 더
-  선호한다.
+  모듈의 인스턴스 메소드를 클래스 메소드로 바꿀 때는 `extend self`보다는
+  `module_function`을 더 선호한다.
 <sup>[[link](#module-function)]</sup>
 
   ```Ruby
@@ -2165,8 +2157,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="liskov"></a>
-  클래스 계층을 디자인 할때는 [리스코프 치환 원칙](http://ko.wikipedia.org/wiki/리스코프_치환_원칙) 을
-  따른다.
+  클래스 계층을 디자인 할 때는 [리스코프 치환
+  원칙](http://ko.wikipedia.org/wiki/리스코프_치환_원칙)에 따른다.
 <sup>[[link](#liskov)]</sup>
 
 * <a name="solid-design"></a>
@@ -2174,7 +2166,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#solid-design)]</sup>
 
 * <a name="define-to-s"></a>
-  도메인 객체 클래스는 항상 적합한 `to_s` 메서드를 제공한다.
+  도메인 객체 클래스는 항상 적합한 `to_s` 메소드를 제공한다.
 <sup>[[link](#define-to-s)]</sup>
 
   ```Ruby
@@ -2229,7 +2221,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#attr)]</sup>
 
   ```Ruby
-  # 나쁜 예 - accessor를 하나 생성 (Ruby 1.9에서 deprecated)
+  # 나쁜 예 - accessor를 하나 생성(루비 1.9에서 비추천됨)
   attr :something, true
   attr :one, :two, :three # attr_reader 처럼 동작한다.
 
@@ -2239,7 +2231,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="struct-new"></a>
-  특별하지 않은 accessor와 생성자, 비교 연산자를 가지는 클래스는 `Struct.new`를 사용해 보는 것도 좋다.
+  특별하지 않은 accessor와 생성자, 비교 연산자를 가지는 클래스는 `Struct.new`를
+  사용해 보는 것도 좋다.
 <sup>[[link](#struct-new)]</sup>
 
   ```Ruby
@@ -2274,7 +2267,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ````
 
 * <a name="factory-methods"></a>
-  어떤 클래스의 인스턴스를 생성할 때 좀 더 명확한 방법을 제공하는 팩토리 메서드를 추가하는 것을 고려해보자.
+  어떤 클래스의 인스턴스를 생성할 때 좀 더 명확한 방법을 제공하는 팩토리
+  메소드를 추가하는 것을 고려해보자.
 <sup>[[link](#factory-methods)]</sup>
 
   ```Ruby
@@ -2292,7 +2286,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```Ruby
   # 나쁜 예
   class Animal
-    # abstract 메서드
+    # abstract 메소드
     def speak
     end
   end
@@ -2345,19 +2339,19 @@ PDF나 HTML로 복사해갈 수 있다.
   Parent.print_class_var # => "child"가 출력된다.
   ```
 
-  상속 계층에 있는 모든 클래스들은 하나의 클래스 변수를 공유한다. 클래스 변수보다는 클래스 인스턴스 변수를
-  사용하는 것이 더 좋다.
+  상속 계층에 있는 모든 클래스는 하나의 클래스 변수를 공유한다. 클래스
+  변수보다는 클래스 인스턴스 변수를 사용하는 것이 더 좋다.
 
 * <a name="visibility"></a>
-  메서드에는 사용되는 목적에 맞는 접근 권한(`private`, `protected`)을 부여한다. 전부 다 기본 접근
-  권한인 `public`인 상태로 두지 마라. 우리는 지금 *Python*이 아니고 *Ruby* 코딩을 하고 있다.
-  (역자주 Python은 명시적인 private 메서드가 없다.)
+  메소드에는 사용되는 목적에 맞는 접근 권한(`private`, `protected`)을 부여한다.
+  전부 다 기본 접근 권한인 `public` 상태로 두지 마라. 우리는 지금 *파이썬*이
+  아닌 *루비* 코딩을 하고 있다.(역자주 파이썬은 명시적인 private 메소드가 없다.)
 <sup>[[link](#visibility)]</sup>
 
 * <a name="indent-public-private-protected"></a>
-  `public`, `protected`, `private`은 메서드 정의와 같은 레벨로 들여쓰기 한다.
-  접근 제한자 아래로 모든 메서드들이 적용된다는 것을 명확하게 하기 위해 접근 제한자 위, 아래로 빈 줄을 넣어
-  준다.
+  `public`, `protected`, `private`은 메소드 정의와 같은 레벨로 들여쓰기 한다.
+  접근 제한자 아래로 모든 메소드들이 적용된다는 것을 명확하게 하기 위해 접근
+  제한자 위, 아래로 빈 줄을 넣어 준다.
 <sup>[[link](#indent-public-private-protected)]</sup>
 
   ```Ruby
@@ -2379,8 +2373,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="def-self-singletons"></a>
-  싱글톤 메서드를 정의할 때는 `def self.method`를 사용한다. 이렇게 하면 클래스명이 반복되지 않기 때문에
-  클래스명 변경으로 리펙토링할 때 좀 더 쉽다.
+  싱글톤 메소드를 정의할 때는 `def self.method`를 사용한다. 이렇게 하면
+  클래스명이 반복되지 않기 때문에 클래스명 변경으로 리펙토링할 때 좀 더 쉬워진다.
 <sup>[[link](#def-self-singletons)]</sup>
 
   ```Ruby
@@ -2395,7 +2389,7 @@ PDF나 HTML로 복사해갈 수 있다.
       # body 생략
     end
 
-    # 싱글톤 메서드가 많은 경우 아래와 같이
+    # 싱글톤 메소드가 많은 경우 아래와 같이
     # 사용하면 편리하다.
     class << self
       def first_method
@@ -2410,8 +2404,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="alias-method-lexically"></a>
-  엘리아스 메서드가 문법적 클래스의 범위에 있고 이 문맥에서 `self`의 범위도
-  문법적이고 알리아스의 접근이 명시적이지 않을 때의 실행시나 서브 클래스에서
+  엘리아스 메소드가 문법적 클래스의 범위에 있고 이 문맥에서 `self`의 범위도
+  문법적이고 alias의 접근이 명시적이지 않을 때의 실행시나 서브 클래스에서
   변경되지 않는 것을 유저가 명확히 이해할 때는`alias`를 사용한다.
 <sup>[[link](#alias-method-lexically)]</sup>
 
@@ -2428,9 +2422,9 @@ PDF나 HTML로 복사해갈 수 있다.
   `alias`가 `def`같은 키워드이기 때문에, 심볼이나 문자열 대신, 생 인자를
   사용한다. 다시 말하면, `alias :foo :bar`대신 `alias foo bar`를 사용한다.
 
-  또 루비가 어떻게 알리아스와 상속을 처리하는지 알아야한다: 알리아스는
-  알리아스가 선언되었을 때의 메서드를 참조한다. 알리아스는 동적으로
-  전달되지 않는다.
+  또 루비가 어떻게 alias와 상속을 처리하는지 알아야한다: alias는
+  alias가 선언되었을 때의 메소드를 참조한다. alias는 동적으로 전달되지
+  않는다.
 
   ```Ruby
   class Fugitive < Westerner
@@ -2441,7 +2435,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
   이 예제에서, `Fugitive#given_name`는 `Fugitive#first_name`가 아니라
-  여전히 원래의 `Westerner#first_name` 메서드를 호출한다.
+  여전히 원래의 `Westerner#first_name` 메소드를 호출한다.
   `Fugitive#given_name`의 행동으로 오버라이드 하려면 파생된 클래스에서도
   재정의 해주어야 한다.
 
@@ -2456,7 +2450,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="alias-method"></a>
-  모듈, 클래스, 싱글턴 클래스를 실행중에 알리아스 할 때는 항상 `alias_method`
+  모듈, 클래스, 싱글턴 클래스를 실행중에 alias 할 때는 항상 `alias_method`
   를 사용한다. 이런 경우에 `alias`의 문법적 범위로는 결과를 예측 하기 힘들다.
 <sup>[[link](#alias-method)]</sup>
 
@@ -2475,8 +2469,9 @@ PDF나 HTML로 복사해갈 수 있다.
 ## 예외
 
 * <a name="fail-method"></a>
-  예외를 발생시킬 때는 `fail` 메서드를 사용한다. 예외를 잡고 다시 예외를 발생시키는 경우에 만 `raise`를 사용한다.
-  (왜냐하면 여기에서는 실패한 것이 아니고 명시적으로 예외를 발생시키는 것이기 때문이다.)
+  예외를 발생시킬 때는 `fail` 메소드를 사용한다. 예외를 잡고 다시 예외를
+  발생시키는 경우에만 `raise`를 사용한다.(왜냐하면 여기에서는 실패한 것이
+  아니고 명시적으로 예외를 발생시키는 것이기 때문이다.)
 <sup>[[link](#fail-method)]</sup>
 
   ```Ruby
@@ -2488,7 +2483,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-explicit-runtimeerror"></a>
-  `fail/raise`를 사용할 때 `RuntimeError`를 첫번째 인수로 하는 메서드는 사용하지 않는다.
+  `fail/raise`를 사용할 때 `RuntimeError`를 첫 번째 인수로 하는 메소드는 사용하지
+  않는다.
 <sup>[[link](#no-explicit-runtimeerror)]</sup>
 
   ```Ruby
@@ -2500,8 +2496,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="exception-class-messages"></a>
-  예외 인스턴스를 생성해서 `fail/raise`를 하는 것 보다 `fail/raise`의 첫번째 인수에 예외 클래스를
-  넘기는 메서드를 사용하는 것이 더 좋다
+  예외 인스턴스를 생성해서 `fail/raise`를 하는 것보다 `fail/raise`의 첫 번째
+  인수에 예외 클래스를 넘기는 메소드를 사용하는 것이 더 좋다.
 <sup>[[link](#exception-class-messages)]</sup>
 
   ```Ruby
@@ -2515,8 +2511,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-return-ensure"></a>
-  `ensure` 블록에서 리턴하지 마라. `ensure` 안에서 명시적으로 리턴을 하면 예외가 발생하기 전에 리턴이
-  되고 예외가 발생하지 않은것 처럼 동작할 것이다.
+  `ensure` 블록에서 리턴하지 마라. `ensure` 안에서 명시적으로 리턴을 하면 예외가
+  발생하기 전에 리턴이 되고 예외가 발생하지 않은 것처럼 동작할 것이다.
 <sup>[[link](#no-return-ensure)]</sup>
 
   ```Ruby
@@ -2550,7 +2546,7 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="contingency-methods"></a>
-  `begin` 블록이 많아지는 것을 줄이기 위해서 *contingency 메서드*를 사용한다.
+  `begin` 블록이 많아지는 것을 줄이기 위해서 *contingency 메소드*를 사용한다.
   (용어는 Avdi Grimm가 만들었다).
 <sup>[[link](#contingency-methods)]</sup>
 
@@ -2633,17 +2629,19 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-blind-rescues"></a>
-  `Exception`을 rescue하는 것을 피한다. 그렇게 하면 `exit`를 잡기 위해서 프로세스에 `kill -9`가
-  필요하다. (역자주 Exception은 루비의 최상위 예외 클래스인데 Interrupt나 SyntaxError등도 포함된다.
-  Interrupt를 rescue하면 Ctrl+C로 프로그램을 종료할 수 없다. `kill -9`로는 종료가 가능하다.
-  또 eval등으로 동적으로 코드를 로드할 때 발생할지도 모르는 SyntaxError도 예상치 못하게 잡게 되어 적절한
-  처리를 못할지도 모른다. http://stackoverflow.com/questions/10048173/why-is-it-bad-style-to-rescue-exception-e-in-ruby)
+  `Exception`을 rescue 하는 것을 피한다. 그렇게 하면 `exit`를 잡기 위해서
+  프로세스에 `kill -9`가 필요하다.(역자주 Exception은 루비의 최상위 예외
+  클래스인데 Interrupt나 SyntaxError 등도 포함된다. Interrupt를 rescue 하면
+  Ctrl+C로 프로그램을 종료할 수 없다. `kill -9`로는 종료가 가능하다. 또
+  eval 등으로 동적으로 코드를 로드할 때 발생할지도 모르는 SyntaxError도 예상치
+  못하게 잡게 되어 적절한 처리를 못할지도 모른다.
+  http://stackoverflow.com/questions/10048173/why-is-it-bad-style-to-rescue-exception-e-in-ruby)
 <sup>[[link](#no-blind-rescues)]</sup>
 
   ```Ruby
   # 나쁜 예
   begin
-    # exit를 호출하면 kill 시그널이 잡힌다. (kill -9는 제외)
+    # exit를 호출하면 kill 시그널이 잡힌다.(kill -9는 제외)
     exit
   rescue Exception
     puts "you didn't really want to exit, right?"
@@ -2667,8 +2665,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="exception-ordering"></a>
-  rescue를 이어서 사용할 때는 더 구체적인 예외부터 순서대로 작성한다. 그렇지 않으면 rescue에 안 걸릴 수
-  있다.
+  rescue를 이어서 사용할 때는 더 구체적인 예외부터 순서대로 작성한다. 그렇지
+  않으면 rescue에 안 걸릴 수 있다.
 <sup>[[link](#exception-ordering)]</sup>
 
   ```Ruby
@@ -2723,13 +2721,14 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="standard-exceptions"></a>
-  스탠다드 라이브러리에 있는 예외보다는 새로운 예외 클래스를 만들어 사용하는 것이 더 좋다.
+  표준 라이브러리에 있는 예외보다는 새로운 예외 클래스를 만들어 사용하는 것이
+  더 좋다.
 <sup>[[link](#standard-exceptions)]</sup>
 
 ## 컬렉션
 
 * <a name="literal-array-hash"></a>
-  배열과 해시 생성 노테이션을 사용한다.(생성자에 파라미터를 전달하지 않는다면)
+  배열과 해시 생성 노테이션을 사용한다.(생성자에 매개변수를 전달하지 않는다면)
 <sup>[[link](#literal-array-hash)]</sup>
 
   ```Ruby
@@ -2743,8 +2742,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="percent-w"></a>
-  단어에 대한 배열이 필요할 때는 `%w` 리터럴을 사용한다.(공백이나 특수문자가 없는 빈 문자가 아닌 문자)
-  두 개 이상의 항목을 가질 때문 이 규칙을 적용한다.
+  단어에 대한 배열이 필요할 때는 `%w` 리터럴을 사용한다.(공백이나 특수문자가
+  없는 비어 있지 않은 문자열) 두 개 이상의 항목을 가질 때만 이 규칙을 적용한다.
 <sup>[[link](#percent-w)]</sup>
 
   ```Ruby
@@ -2756,8 +2755,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="percent-i"></a>
-  심볼에 대한 배열이 필요할 때는 `%i` 리터럴을 사용한다.(Ruby 1.9와 호환성이 필요 없는 경우)
-  두 개 이상의 항목을 가질 때만 이 규칙을 적용한다.
+  심볼에 대한 배열이 필요할 때는 `%i` 리터럴을 사용한다.(루비 1.9와 호환성이
+  필요 없는 경우) 두 개 이상의 항목을 가질 때만 이 규칙을 적용한다.
 <sup>[[link](#percent-i)]</sup>
 
   ```Ruby
@@ -2769,8 +2768,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-trailing-array-commas"></a>
-  배열이나 해시의 마지막 항목에 컴마를 사용하지 마라. 특히 항목이 여러 줄로 나뉘어져 있는 경우가 아니라면 더
-  사용하지 마라.
+  배열이나 해시의 마지막 항목에 콤마를 사용하지 마라. 특히 항목이 여러 줄로
+  나뉘어 있는 경우가 아니라면 더 사용하지 마라.
 <sup>[[link](#no-trailing-array-commas)]</sup>
 
   ```Ruby
@@ -2798,13 +2797,14 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="first-and-last"></a>
-  배열의 첫번째나 마지막 항목에 접근할 때 `[0]` 또는 `[-1]` 대신 `first` 나 `last`를 사용하라.
+  배열의 첫 번째나 마지막 항목에 접근할 때 `[0]` 또는 `[-1]` 대신 `first`나
+  `last`를 사용하라.
 <sup>[[link](#first-and-last)]</sup>
 
 * <a name="set-vs-array"></a>
-  유일한 항목을 다룰 때는 `Array` 대신 `Set`을 사용하라. `Set`은 중복이 없고 정렬되지 않은 항목을
-  다룰 수 있는 컬렉션 구현체이다. `Set`은 배열의 직관적인 동작들과 `Hash`의 빠른 조회 특성을 모두 가지고
-  있다.
+  유일한 항목을 다룰 때는 `Array` 대신 `Set`을 사용하라. `Set`은 중복이 없고
+  정렬되지 않은 항목을 다룰 수 있는 컬렉션 구현체이다. `Set`은 배열의 직관적인
+  동작들과 `Hash`의 빠른 조회 특성을 모두 가지고 있다.
 <sup>[[link](#set-vs-array)]</sup>
 
 * <a name="symbols-as-keys"></a>
@@ -2824,7 +2824,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#no-mutable-keys)]</sup>
 
 * <a name="hash-literals"></a>
-  해시 키가 심볼인 경우 Ruby 1.9 해시 리터를을 사용하라.
+  해시 키가 심볼인 경우 루비 1.9 해시 리터럴을 사용하라.
 <sup>[[link](#hash-literals)]</sup>
 
   ```Ruby
@@ -2836,8 +2836,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-mixed-hash-syntaces"></a>
-  하나의 해시에 Ruby 1.9 해시 문법과 기존 해시 문법을 섞어 쓰지 마라. 심볼이 아닌 키가 포함되어 있다면
-  이전의 해시 문법을 사용하라.
+  하나의 해시에 루비 1.9 해시 문법과 기존 해시 문법을 섞어 쓰지 마라. 심볼이
+  아닌 키가 포함되어 있다면 이전의 해시 문법을 사용하라.
 <sup>[[link](#no-mixed-hash-syntaces)]</sup>
 
   ```Ruby
@@ -2849,8 +2849,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="hash-key"></a>
-  `Hash#has_key?` 대신 `Hash#key?`, `Hash#has_value?` 대신 `Hash#value?`를 사용하라.
-  Matz에 의하면 긴 문법은 페지하는 것을 논의 중이다.
+  `Hash#has_key?` 대신 `Hash#key?`, `Hash#has_value?` 대신 `Hash#value?`를
+  사용하라. Matz에 의하면 긴 문법은 폐지하는 것을 논의 중이다.
   [here](http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/43765)
 <sup>[[link](#hash-key)]</sup>
 
@@ -2980,7 +2980,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="pad-string-interpolation"></a>
-  문자열 삽입 코드에 공백을 양쪽으로 주는 것을 고려해본다. 문자열로부터 분리되어 코드가 좀 더 명확해진다.
+  문자열 삽입 코드에 공백을 양쪽으로 주는 것을 고려해본다. 문자열로부터 분리되어
+  코드가 좀 더 명확해진다.
 <sup>[[link](#pad-string-interpolation)]</sup>
 
   ```Ruby
@@ -2988,12 +2989,13 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="consistent-string-literals"></a>
-  일관된 문자열 따옴표 스타일을 선택한다. 루비 커뮤니티에는 많이 사용하는 두가지 스타일이 있는데 둘다 괜찮다.
-  하나는 단 따옴표를 사용하는 방법(Option A)이고 다른 하나는 쌍 따옴표를 사용하는 방법이다(Option B).
+  일관된 문자열 따옴표 스타일을 선택한다. 루비 커뮤니티에는 많이 사용하는 두 가지
+  스타일이 있는데 둘 다 괜찮다. 하나는 작은따옴표를 사용하는 방식(A 방식)이고
+  다른 하나는 큰따옴표를 사용하는 방식이다(B 방식).
 <sup>[[link](#consistent-string-literals)]</sup>
 
-  * **(Option A)**`\t`, `\n`, `'`등의 특수 문자나 문자열 삽입이 필요 없는 경우는 단 따옴표를
-    사용하는 것이 좋다.
+  * **(A 방식)**`\t`, `\n`, `'` 등의 특수문자나 문자열 삽입이 필요 없는 경우는
+    작은따옴표를 사용하는 것이 좋다.
 
     ```Ruby
     # 나쁜 예
@@ -3003,8 +3005,8 @@ PDF나 HTML로 복사해갈 수 있다.
     name = 'Bozhidar'
     ```
 
-  * **(Option B)** `"`를 포함하지 않거나 이스케이프된 특수문자를 제한할 필요가 없는 경우에는
-    쌍 따옴표를 사용한다.
+  * **(B 방식)** `"`를 포함하지 않거나 이스케이프된 특수문자를 제한할 필요가
+    없는 경우에는 큰따옴표를 사용한다.
 
     ```Ruby
     # 나쁜 예
@@ -3014,11 +3016,12 @@ PDF나 HTML로 복사해갈 수 있다.
     name = "Bozhidar"
     ```
 
-  두번째 스타일이 루비 커뮤니티에서 조금 더 일반적이다. 하지만 이 가이드에서는 첫번째 스타일로 통일한다.
+  두 번째 스타일이 루비 커뮤니티에서 조금 더 일반적이다. 하지만 이 가이드에서는
+  첫 번째 스타일로 통일한다.
 
 * <a name="no-character-literals"></a>
-  문자 리터럴인 `?x`는 사용하지 않는다. 루비 1.9에서는 기본적으로 필요 없다. `?x`는 `'x'`로 해석된다
-  (문자 하나가 포함된 문자열).
+  문자 리터럴인 `?x`는 사용하지 않는다. 루비 1.9에서는 기본적으로 필요 없다.
+  `?x`는 `'x'`로 해석된다.(문자 하나가 포함된 문자열)
 <sup>[[link](#no-character-literals)]</sup>
 
   ```Ruby
@@ -3074,8 +3077,9 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="concat-strings"></a>
-  큰 문자열 데이터가 필요할 때 `String#+`를 사용하지 마라. 대신 `String#<<`를 사용하라. 문자열 자체를
-  변경하는 것이 새로운 문자열 객체를 생성하는 `String#+`보다 항상 빠르다.
+  큰 문자열 데이터가 필요할 때 `String#+`를 사용하지 마라. 대신 `String#<<`를
+  사용하라. 문자열 자체를 변경하는 것이 새로운 문자열 객체를 생성하는
+  `String#+`보다 항상 빠르다.
 <sup>[[link](#concat-strings)]</sup>
 
   ```Ruby
@@ -3106,8 +3110,8 @@ PDF나 HTML로 복사해갈 수 있다.
     ```
 
 * <a name="heredocs"></a>
-  여러 줄로 heredocs를 사용할 때 공백 문자들이 유지된다는 사실을 잊지 말자. 특정 기준을 정하고 나머지
-  불필요한 공백을 모두 없애는 것이 좋은 방법이다.
+  여러 줄로 heredoc을 사용할 때 공백 문자들이 유지된다는 사실을 잊지 말자. 특정
+  기준을 정하고 나머지 불필요한 공백을 모두 없애는 것이 좋은 방법이다.
 <sup>[[link](#heredocs)]</sup>
 
   ```Ruby
@@ -3150,8 +3154,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-perl-regexp-last-matchers"></a>
-  정규식 그룹에서 값을 사용할 때 (`$1`, `$2`, etc) 처럼 암호문 같은 펄 변수 기호를 사용하지 마라.
-  대신 `Regexp.last_match(n)`를 사용하라.
+  정규식 그룹에서 값을 사용할 때(`$1`, `$2` 등)처럼 암호문 같은 펄 변수
+  기호를 사용하지 마라. 대신 `Regexp.last_match(n)`를 사용하라.
 <sup>[[link](#no-perl-regexp-last-matchers)]</sup>
 
   ```Ruby
@@ -3166,8 +3170,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-numbered-regexes"></a>
-  정규식 그룹에서 값을 사용할 때 숫자 형식은 안에 뭐가 있는지 알아보기 힘들기 때문에 사용을 피한다. 대신
-  이름 기반의 정규식 그룹을 사용한다.
+  정규식 그룹에서 값을 사용할 때 숫자 형식은 안에 뭐가 있는지 알아보기 힘들기
+  때문에 사용을 피한다. 대신 이름 기반의 정규식 그룹을 사용한다.
 <sup>[[link](#no-numbered-regexes)]</sup>
 
   ```Ruby
@@ -3183,14 +3187,14 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="limit-escapes"></a>
-  문자들 중에 몇개의 문자(`^`, `-`, `\`, `]`)들만 특수 문자로 다뤄지기 때문에 `[]`안에서 `.`을
-  이스케이프 하면 안된다.
+  문자들 중에 몇 개의 문자(`^`, `-`, `\`, `]`)만 특수문자로 다뤄지기 때문에
+  `[]` 안에서 `.`을 이스케이프 하면 안 된다.
 <sup>[[link](#limit-escapes)]</sup>
 
 * <a name="caret-and-dollar-regexp"></a>
-  줄의 시작과 끝을 다루는 `^`와 `$`는 문자열의 시작과 끝이 아니기 때문에 주의해서 사용해야 한다.
-  만약 문자열 전체를 매칭하는 경우에는 `\A`와 `\z`를 사용한다(`/\n?\z/`와 같은 `\Z`과
-  혼동하지 않는다.).
+  줄의 시작과 끝을 다루는 `^`와 `$`는 문자열의 시작과 끝이 아니기 때문에
+  주의해서 사용해야 한다. 만약 문자열 전체를 매칭하는 경우에는 `\A`와 `\z`를
+  사용한다.(`/\n?\z/`와 같은 `\Z`와 혼동하지 않는다.)
 <sup>[[link](#caret-and-dollar-regexp)]</sup>
 
   ```Ruby
@@ -3200,8 +3204,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="comment-regexes"></a>
-  복잡한 정규식에 `x`를 사용한다. `x`를 사용하면 좀 더 읽기 좋아지고 유용한 주석도 추가할 수 있다.
-  공백이 무시되는 것에 주의 한다.
+  복잡한 정규식에 `x`를 사용한다. `x`를 사용하면 좀 더 읽기 좋아지고 유용한
+  주석도 추가할 수 있다. 공백이 무시되는 것에 주의 한다.
 <sup>[[link](#comment-regexes)]</sup>
 
   ```Ruby
@@ -3221,30 +3225,30 @@ PDF나 HTML로 복사해갈 수 있다.
 ## 퍼센트 리터럴
 
 * <a name="percent-q-shorthand"></a>
-  쌍따옴표와 문자열 삽입이 필요한 한 줄 문자열에만 `%()`(`%Q`의 짧은 표현)를 사용한다. 여러 줄의 문자열은
-  heredocs를 사용한다.
+  큰따옴표와 문자열 삽입이 필요한 한 줄 문자열에만 `%()`(`%Q`의 짧은 표현)를
+  사용한다. 여러 줄의 문자열은 heredoc을 사용한다.
 <sup>[[link](#percent-q-shorthand)]</sup>
 
   ```Ruby
-  # 나쁜 예 (문자열 삽입이 없다)
+  # 나쁜 예(문자열 삽입이 없다)
   %(<div class="text">Some text</div>)
   # should be '<div class="text">Some text</div>'
 
-  # 나쁜 예 (쌍 따옴표가 없다)
+  # 나쁜 예(큰따옴표가 없다)
   %(This is #{quality} style)
   # should be "This is #{quality} style"
 
-  # 나쁜 예 (여러 줄이다)
+  # 나쁜 예(여러 줄이다)
   %(<div>\n<span class="big">#{exclamation}</span>\n</div>)
   # should be a heredoc.
 
-  # 좋은 예 (한줄에 쌍따옴표와 문자열 삽입이 필요하다)
+  # 좋은 예(한 줄에 큰따옴표와 문자열 삽입이 필요하다)
   %(<tr><td class="name">#{name}</td>)
   ```
 
 * <a name="percent-q"></a>
-  `'`와 `"`가 둘 다 들어있는 문자열이 아닌 경우에 `%q` 사용을 피한다. 일반 문자열 리터럴이 더 읽기 좋고
-  이스케이프 할 문자가 많지 않은 경우에는 더 좋다.
+  `'`와 `"`가 둘 다 들어있는 문자열이 아닌 경우에 `%q` 사용을 피한다. 일반 문자열
+  리터럴이 더 읽기 좋고 이스케이프 할 문자가 많지 않은 경우에는 더 좋다.
 <sup>[[link](#percent-q)]</sup>
 
   ```Ruby
@@ -3289,13 +3293,13 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="percent-s"></a>
-  `%s`의 사용은 피한다. 루비 커뮤니티에서는 공백이 포함된 심볼을 만들 때는 `:"문자열"`을 사용하기로 결정한
-  것으로 보인다.
+  `%s`의 사용은 피한다. 루비 커뮤니티에서는 공백이 포함된 심볼을 만들 때는
+  `:"문자열"`을 사용하기로 결정한 것으로 보인다.
 <sup>[[link](#percent-s)]</sup>
 
 * <a name="percent-literal-braces"></a>
-  `%r`을 빼고 모든 `%` 리터럴의 구분자는 `()`를 사용한다. 정규식에서는 괄호가 나오는 경우가 흔하기 때문에
-  `%r`은 구분자로 `{`를 사용하는 것이 더 좋다.
+  `%r`을 빼고 모든 `%` 리터럴의 구분자는 `()`를 사용한다. 정규식에서는 괄호가
+  나오는 경우가 흔하기 때문에 `%r`은 구분자로 `{`를 사용하는 것이 더 좋다.
 <sup>[[link](#percent-literal-braces)]</sup>
 
   ```Ruby
@@ -3315,12 +3319,14 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#no-needless-metaprogramming)]</sup>
 
 * <a name="no-monkey-patching"></a>
-  라이브러리를 작성할 때 코어 클래스를 망쳐놓지 마라. (거기에 Monkey-patch를 하지 마라.)
+  라이브러리를 작성할 때 코어 클래스를 망쳐놓지 마라.(거기에 Monkey-patch를
+  하지 마라.)
 <sup>[[link](#no-monkey-patching)]</sup>
 
 * <a name="block-class-eval"></a>
   `class_eval` 폼 블록은 문자열 삽입 폼보다 더 좋다.
-  - 문자열 삽입 폼을 사용할 때는  backtrace를 위해서 항상 `__FILE__`과 `__LINE__`를 써야한다.
+  - 문자열 삽입 폼을 사용할 때는 백트레이스를 위해서 항상 `__FILE__`과
+    `__LINE__`을 써야 한다.
 <sup>[[link](#block-class-eval)]</sup>
 
   ```ruby
@@ -3330,8 +3336,8 @@ PDF나 HTML로 복사해갈 수 있다.
   - `define_method`가 `class_eval{ def ... }`보다 좋다.
 
 * <a name="eval-comment-docs"></a>
-  문자열 삽입과 함께 `class_eval` (또는 다른 `eval`)를 사용할 때는 실행되어 보여지게 될 코드를
-  주석으로 추가한다. (Rails 코드를 참고)
+  문자열 삽입과 함께 `class_eval`(또는 다른 `eval`)을 사용할 때는 실행되어
+  보여지게 될 코드를 주석으로 추가한다.(레일즈 코드를 참고)
 <sup>[[link](#eval-comment-docs)]</sup>
 
   ```ruby
@@ -3353,16 +3359,18 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="no-method-missing"></a>
-  백트레이스 할때 `#methods` 리스트에 출력되지 않고 메서드 호출에 오타가 있는 경우에 (에를 들어
-  `nukes.launch_state = false`) 발견되지 않기 때문에 메타프로그래밍에서 `method_missing`을
-  사용하지 않는다. 대신 델리게이션이나 프록시, `define_method`를 사용한다. 만약 `method_missing`을
-  사용해야한다면 :
+  백트레이스 할 때 `#methods` 리스트에 출력되지 않고 메소드 호출에 오타가 있는
+  경우에(예를 들어 `nukes.launch_state = false`) 발견되지 않기 때문에 메타
+  프로그래밍에서 `method_missing`을 사용하지 않는다. 대신 델리게이션이나 프록시
+  `define_method`를 사용한다. 만약 `method_missing`을 사용해야 한다면:
 <sup>[[link](#no-method-missing)]</sup>
 
-  - [`respond_to_missing?`](http://blog.marc-andre.ca/2010/11/methodmissing-politely.html)도 정의해야 한다.
-  - `find_by_*`같은 잘 알려진 prefix 가진 메서드만 잡는다 -- 가능한 한 코드를 단정적으로 만든다.
+  - [`respond_to_missing?`](http://blog.marc-andre.ca/2010/11/methodmissing-politely.html)도
+    정의해야 한다.
+  - `find_by_*` 같은 잘 알려진 prefix를 가진 메소드만 잡는다 -- 가능한 한 코드를
+    단정적으로 만든다.
   - 구문 끝에서 `super`를 호출한다.
-  - 일반 메서드에 단정적으로 위임한다. :
+  - 일반 메소드에 단정적으로 위임한다.
 
     ```ruby
     # 나쁜 예
@@ -3387,29 +3395,31 @@ PDF나 HTML로 복사해갈 수 있다.
     ```
 
 * <a name="prefer-public-send"></a>
-  `private`/`protected` 범위를 회피하지 않도록,`send`대신 `public_send` 를 사용한다.
+  `private`/`protected` 범위를 회피하지 않도록, `send`대신 `public_send`를
+  사용한다.
 <sup>[[link](#prefer-public-send)]</sup>
 
-## 그밖에
+## 그 밖에
 
 * <a name="always-warn"></a>
   `ruby -w`로 안전한 코드를 작성한다.
 <sup>[[link](#always-warn)]</sup>
 
 * <a name="no-optional-hash-params"></a>
-  Optional 파라미터로 해시를 사용하지 않는다. (객체 생성자는 이 규칙에서 예외다.)
+  Optional 매개변수로 해시를 사용하지 않는다.(객체 생성자는 이 규칙에서 예외다.)
 <sup>[[link](#no-optional-hash-params)]</sup>
 
 * <a name="short-methods"></a>
-  메서드는 10줄을 넘지 않게 하라. 이상적으로 대부분의 메서드는 5줄 이하여야한다. 빈 줄은 제외한다.
+  메소드는 10줄을 넘지 않게 하라. 이상적으로 대부분의 메소드는 5줄 이하여야 한다.
+  빈 줄은 제외한다.
 <sup>[[link](#short-methods)]</sup>
 
 * <a name="too-many-params"></a>
-  3개 또는 4개 이상의 파라미터 리스트는 사용하지 않는다.
+  3개 또는 4개 이상의 매개변수 리스트는 사용하지 않는다.
 <sup>[[link](#too-many-params)]</sup>
 
 * <a name="private-global-methods"></a>
-  전역 메서드가 정말로 필요하다면 private으로 만들고 Kernel에 추가하라.
+  전역 메소드가 정말로 필요하다면 private으로 만들고 Kernel에 추가하라.
 <sup>[[link](#private-global-methods)]</sup>
 
 * <a name="instance-vars"></a>
@@ -3431,7 +3441,8 @@ PDF나 HTML로 복사해갈 수 있다.
   ```
 
 * <a name="optionparser"></a>
-  복잡한 명령어 라인에서 인수를 가져올 때 `OptionParser`를 사용하고 간단한 옵션은 `ruby -s`를 사용한다.
+  복잡한 명령어 라인에서 인수를 가져올 때 `OptionParser`를 사용하고 간단한 옵션은
+  `ruby -s`를 사용한다.
 <sup>[[link](#optionparser)]</sup>
 
 * <a name="time-now"></a>
@@ -3443,7 +3454,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#functional-code)]</sup>
 
 * <a name="no-param-mutations"></a>
-  의도하지 않게 메서드 안에서 파라메터를 수정하면 안 된다.
+  메소드의 목적이 매개변수의 수정이 아닌 경우 매개변수를 수정하면 안 된다.
 <sup>[[link](#no-param-mutations)]</sup>
 
 * <a name="three-is-the-number-thou-shalt-count"></a>
@@ -3451,7 +3462,7 @@ PDF나 HTML로 복사해갈 수 있다.
 <sup>[[link](#three-is-the-number-thou-shalt-count)]</sup>
 
 * <a name="be-consistent"></a>
-  일관성을 지켜라. 이 가이드라인의 가지고 일관성을 유지하는 것이 이상적이다.
+  일관성을 지켜라. 이 가이드 라인을 가지고 일관성을 유지하는 것이 이상적이다.
 <sup>[[link](#be-consistent)]</sup>
 
 * <a name="common-sense"></a>
@@ -3464,9 +3475,9 @@ PDF나 HTML로 복사해갈 수 있다.
 
 ### RuboCop
 
-[RuboCop][]은 이 가이드를 기반으로 해서 루비 코드 스타일을
-체크해준다. 이 가이드의 상당 부분을 커버하는 RuboCop은 MRI 1.9와 MRI 2.0을 지원하고 Emacs와 통합에
-좋다.
+[RuboCop][]은 이 가이드를 기반으로 해서 루비 코드 스타일을 체크해준다. 이
+가이드의 상당 부분을 커버하는 RuboCop은 MRI 1.9와 MRI 2.0을 지원하고 Emacs와
+통합에 좋다.
 
 ### RubyMine
 
@@ -3476,10 +3487,19 @@ PDF나 HTML로 복사해갈 수 있다.
 
 # 참여하기
 
-이 가이드는 확정된 가이드가 아니다. 나는 루비 코딩 스타일에 흥미를 가지고 있는 사람들과 함께 만들어가고 싶다.
-그래서 모든 루비 커뮤니티에서 유용하게 사용될 자료로 사용되면 좋겠다.
+이 가이드는 아직 완성되지 않았다. - 몇 가지 규칙은 예제가 없고, 몇 가지 규칙은
+충분하고 명확한 설명이 없다. 그런 규칙을 보완해 루비 커뮤니티를 훌륭히(또 간단히)
+도울 수 있다.
 
-개선을 위해서 티켓을 열거나 풀 리퀘스트를 마음것 보내라. 당신의 도움에 미리 감사한다!
+(바라건대)이러한 문제들은 곧 해결될 것이다. - 일단 그렇다는 걸 기억하고 있으면
+된다.
+
+이 가이드는 확정된 가이드가 아니다. 나는 루비 코딩 스타일에 흥미를 가지고 있는
+사람들과 함께 만들어가고 싶다. 그래서 모든 루비 커뮤니티에서 유용하게 사용될
+자료로 사용되면 좋겠다.
+
+개선을 위해서 티켓을 열거나 풀 리퀘스트를 마음껏 보내라. 당신의 도움에 미리
+감사한다!
 
 또 이 프로젝트(와 RuboCop)에 금전적인 기부는 [gittip](https://www.gittip.com/bbatsov)을
 통해서 할 수 있다.
@@ -3499,15 +3519,9 @@ PDF나 HTML로 복사해갈 수 있다.
 
 # 공유합시다!
 
-이 가이드는 아직 완성되지 않았다. - 몇 가지 규칙은 예제가 없고,
-몇 가지 규칙은 충분하고 명확한 설명이 없다.  그런 룰을 보완하는 것은 루비
-커뮤니티를 훌륭하게 (또 간단하게) 돕는 일이다.
-(바라건대) 이러한 문제들은 곧 해결될 것이다. - 일단 그렇다는 걸 기억하고 있으면 된다.
-
-커뮤니티 기반 스타일 가이드는 이걸 모르는 곳에서는 거의 쓸모가 없다.
-이 가이드를 친구나 동료들에게 트윗하거나 공유하라.
-모든 댓글이나 의견, 제안은 우리가 이 가이드를 좀 더 좋게 만들 수 있다.
-가능한 한 더 좋은 가이드를 가지고 싶지 않은가?
+커뮤니티 기반 스타일 가이드는 이걸 모르는 곳에서는 거의 쓸모가 없다. 이 가이드를
+친구나 동료에게 트윗하거나 공유하라. 우리가 받는 모든 댓글이나 의견, 제안은 이
+가이드를 좀 더 좋게 만들 수 있다. 더 좋은 가이드를 가지고 싶지 않은가?
 
 화이팅,<br/>
 [Bozhidar](https://twitter.com/bbatsov)
