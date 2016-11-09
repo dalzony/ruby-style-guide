@@ -1104,7 +1104,7 @@
   ```
 
 * <a name="no-parens-around-condition"></a>
-  제어식의 조건의 앞뒤에는 괄호를 사용하지 마라.
+  제어식의 조건 앞뒤에는 괄호를 사용하지 마라.
 <sup>[[link](#no-parens-around-condition)]</sup>
 
   ```Ruby
