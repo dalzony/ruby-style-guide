@@ -1103,9 +1103,9 @@
   end
   ```
 
-* <a name="no-parens-if"></a>
-  한 개의 `if/unless/while/until` 구문의 조건식 앞뒤에는 괄호를 사용하지 마라.
-<sup>[[link](#no-parens-if)]</sup>
+* <a name="no-parens-around-condition"></a>
+  제어식의 조건 앞뒤에는 괄호를 사용하지 마라.
+<sup>[[link](#no-parens-around-condition)]</sup>
 
   ```Ruby
   # 나쁜 예
@@ -2156,11 +2156,6 @@
     end
   end
   ```
-
-* <a name="reduce-blocks"></a>
-  짧은 블록과 함께 `reduce`를 쓸 때에는,
-  인수 이름을 `|a, e|`로 하라.(accumulator, element)
-<sup>[[link](#reduce-blocks)]</sup>
 
 * <a name="other-param"></a>
   이항 연산자를 정의할 때에는, 매개변수 이름을 `other`로 하라.
