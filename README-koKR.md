@@ -61,7 +61,7 @@
 * [German](https://github.com/arbox/de-ruby-style-guide/blob/master/README-deDE.md)
 * [Japanese](https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md)
 * [한국어](https://github.com/dalzony/ruby-style-guide/blob/master/README-koKR.md)
-* [Portuguese](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
+* [Portuguese (pt-BR)](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
 * [Russian](https://github.com/arbox/ruby-style-guide/blob/master/README-ruRU.md)
 * [Spanish](https://github.com/alemohamad/ruby-style-guide/blob/master/README-esLA.md)
 * [Vietnamese](https://github.com/CQBinh/ruby-style-guide/blob/master/README-viVN.md)
@@ -701,9 +701,9 @@
 
     ```Ruby
     # 나쁜 예
-    expect(bowling.score).to eq 0
+    validates(:name, presence: true)
     # 좋은 예
-    expect(bowling.score).to eq(0)
+    validates :name, presence: true
     ```
 
   * 루비에서 "키워드"로 취급되는 메소드:
@@ -982,24 +982,26 @@
 
   # 좋은 예
   x = 'test'
-  unless x.nil?
+  if x
     # 내용 생략
   end
   ```
 
 * <a name="no-and-or-or"></a>
-  `and`와 `or`은 금지어다. 그만한 가치가 없다. 대신에 항상 `&&`와 `||`를 써라.
+  `and`와 `or`은 금지어다. 약간의 가독성 개선은 이로 발생하는 발견하기 어려운
+미묘한 버그의 발생 가능성이 커지는 점에 비하면 그만한 가치가 없다.
+대신에 boolean을 비교하고 싶다면 항상 `&&`와 `||`를 써라. 분기를 위해서라면
+`if`나 `unless`를 사용하라. `&&`나 `||`를 사용할 수도 있지만 상대적으로 가독성이
+좋지 않다.
 <sup>[[link](#no-and-or-or)]</sup>
 
   ```Ruby
   # 나쁜 예
   # boolean 식
-  if some_condition and some_other_condition
-    do_something
-  end
+  ok = got_needed_arguments and arguments_are_valid
 
   # 제어문
-  document.saved? or document.save!
+  document.save or fail(RuntimError, "Failed to save document!")
 
   # 좋은 예
   # boolean 식
@@ -1008,7 +1010,11 @@
   end
 
   # 제어문
-  document.saved? || document.save!
+  fail(RuntimeError, "Failed to save document!") unless document.save
+
+  # ok
+  # control flow
+  document.save || fail(RuntimeError, "Failed to save document!")
   ```
 
 * <a name="no-multiline-ternary"></a>
@@ -1257,7 +1263,7 @@
 <sup>[[link](#single-line-blocks)]</sup>
 
   ```Ruby
-  names = %w(Bozhidar Steve Sarah)
+  names = %w[Bozhidar Steve Sarah]
 
   # 나쁜 예
   names.each do |name|
@@ -1326,7 +1332,8 @@
   ```
 
 * <a name="no-self-unless-required"></a>
-  불필요한 `self`를 피하라.(이건, self write accessor를 호출할 때만 필요하다.)
+  불필요한 `self`를 피하라.(이건, self write accessor를 호출할 때나,
+  예약어 뒤에 오는 메소드, 또는 오버로드 가능한 연산자만 필요하다.)
 <sup>[[link](#no-self-unless-required)]</sup>
 
   ```Ruby
@@ -1737,11 +1744,11 @@
 
   ```Ruby
   # 나쁜 예
-  %w(one two three) * ', '
+  %w[one two three] * ', '
   # => 'one, two, three'
 
   # 좋은 예
-  %w(one two three).join(', ')
+  %w[one two three].join(', ')
   # => 'one, two, three'
   ```
 
@@ -1981,6 +1988,7 @@
   :someSymbol
 
   someVar = 5
+  var_10  = 10
 
   def someMethod
     # 생략
@@ -1993,10 +2001,38 @@
   # 좋은 예
   :some_symbol
 
+  some_var = 5
+  var10    = 10
+
   def some_method
     # 생략
   end
   ```
+
+* <a name="snake-case-symbols-methods-vars-with-numbers"></a>
+  심볼이나 메소드, 변수명에서 숫자를 앞에 오는 문자로부터 분리하지 마라.
+<sup>[[link](#snake-case-symbols-methods-vars-with-numbers)]</sup>
+
+  ```Ruby
+  # 나쁜 예
+  :some_sym_1
+
+  some_var_1 = 1
+
+  def some_method_1
+    # some code
+  end
+
+  # 좋은 예
+  :some_sym1
+
+  some_var1 = 1
+
+  def some_method1
+    # some code
+  end
+  ```
+
 
 * <a name="camelcase-classes"></a>
   클래스와 모듈에 대해서는 `CamelCase`(카멜표기)를 사용하라.
@@ -2274,6 +2310,73 @@
   다른 어노테이션 키워드들은 필요에 따라 작성하고 `README` 같은 곳에 정리해둔다.
 <sup>[[link](#document-annotations)]</sup>
 
+### 매직 코멘트
+
+* <a name="magic-comments-first"></a>
+  매직 코멘트는 모든 코드와 문서 위에 두어라. 매직 코멘트는 소스 파일에
+쉬뱅(!)을 사용하는 경우에만 그 밑에 두어라.
+<sup>[[link](#magic-comments-first)]</sup>
+
+  ```Ruby
+  # 좋은 예
+  # frozen_string_literal: true
+  # Person에 대한 문서
+  class Person
+  end
+
+  # 나쁜 예
+  # Person에 대한 문서
+  # frozen_string_literal: true
+  class Person
+  end
+  ```
+
+  ```Ruby
+  # 좋은 예
+  #!/usr/bin/env ruby
+  # frozen_string_literal: true
+  App.parse(ARGV)
+
+  # 나쁜 예
+  # frozen_string_literal: true
+  #!/usr/bin/env ruby
+  App.parse(ARGV)
+  ```
+
+* <a name="one-magic-comment-per-line"></a>
+  여러 개의 매직 코멘트를 사용하는 경우에는 각각 다른 줄로 나누어라.
+<sup>[[link](#one-magic-comment-per-line)]</sup>
+
+  ```Ruby
+  # 좋은 예
+  # frozen_string_literal: true
+  # encoding: ascii-8bit
+
+  # 나쁜 예
+  # -*- frozen_string_literal: true; encoding: ascii-8bit -*-
+  ```
+
+* <a name="separate-magic-comments-from-code"></a>
+  매직 코멘트와 코드, 문서 사이에 빈 줄을 사이에 두어라.
+<sup>[[link](#separate-magic-comments-from-code)]</sup>
+
+  ```Ruby
+  # 좋은 예
+  # frozen_string_literal: true
+
+  # Person에 대한 문서
+  class Person
+    # 생략
+  end
+
+  # 나쁜 예
+  # frozen_string_literal: true
+  # Person에 대한 문서
+  class Person
+    # 생략
+  end
+  ```
+
 ## 클래스와 모듈
 
 * <a name="consistent-classes"></a>
@@ -2287,7 +2390,7 @@
     include AnotherModule
 
     # inner classes
-    CustomErrorKlass = Class.new(StandardError)
+    CustomError = Class.new(StandardError)
 
     # 상수는 다음에 나온다.
     SOME_CONSTANT = 20
@@ -2770,6 +2873,34 @@
   end
   ```
 
+* <a name="class-and-self"></a>
+  클래스나 모듈 메소드가 서로를 호출하는 경우에 `self`나 `.`을 포함한 자신의
+  이름을 생략해라. 이는 클래스를 함수인것 처럼 사용하는 "서비스 클래스"나 다른
+  비슷한 컨셉에서 많이 볼 수 있다. 이는 그러한 클래스들을 만들 때의 반복 작업을
+  줄이기 위한 의도를 가지고 있다.
+  <sup>[[link](#class-and-self)]</sup>
+
+  ```Ruby
+  class TestClass
+    # 나쁜 예 -- 클래스의 이름이 바뀌거나 메소드의 위치가 바뀔 때 해야할 작업이 더 많다
+    def self.call(param1, param2)
+      TestClass.new(param1).call(param2)
+    end
+
+    # 나쁜 예 -- 필요 이상으로 장황하다
+    def self.call(param1, param2)
+      self.new(param1).call(param2)
+    end
+
+    # 좋은 예
+    def self.call(param1, param2)
+      new(param1).call(param2)
+    end
+
+    # ...다른 메소드들...
+  end
+  ```
+
 ## 예외
 
 * <a name="prefer-raise-over-fail"></a>
@@ -3053,7 +3184,7 @@
   STATES = ['draft', 'open', 'closed']
 
   # 좋은 예
-  STATES = %w(draft open closed)
+  STATES = %w[draft open closed]
   ```
 
 * <a name="percent-i"></a>
@@ -3066,7 +3197,7 @@
   STATES = [:draft, :open, :closed]
 
   # 좋은 예
-  STATES = %i(draft open closed)
+  STATES = %i[draft open closed]
   ```
 
 * <a name="no-trailing-array-commas"></a>
@@ -3152,8 +3283,7 @@
 
 * <a name="hash-key"></a>
   `Hash#has_key?` 대신 `Hash#key?`, `Hash#has_value?` 대신 `Hash#value?`를
-  사용하라. Matz에 의하면 긴 문법은 폐지하는 것을 논의 중이다.
-  [here](http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/43765)
+  사용하라.
 <sup>[[link](#hash-key)]</sup>
 
   ```Ruby
@@ -3663,8 +3793,9 @@
   ```
 
 * <a name="percent-q"></a>
-  `'`와 `"`가 둘 다 들어있는 문자열이 아닌 경우에 `%q` 사용을 피한다. 일반 문자열
-  리터럴이 더 읽기 좋고 이스케이프 할 문자가 많지 않은 경우에는 더 좋다.
+  `'`와 `"`가 둘 다 들어있는 문자열이 아닌 경우에 %()나 %q()와 같은 것들의
+  사용을 피한다. 일반 문자열 리터럴이 더 읽기 좋고 이스케이프 할 문자가 많지
+  않은 경우에는 더 좋다.
 <sup>[[link](#percent-q)]</sup>
 
   ```Ruby
@@ -3712,19 +3843,37 @@
 <sup>[[link](#percent-s)]</sup>
 
 * <a name="percent-literal-braces"></a>
-  `%r`을 빼고 모든 `%` 리터럴의 구분자는 `()`를 사용한다. 정규식에서는 괄호가
-  나오는 경우가 흔하기 때문에 `%r`은 구분자로 `{`를 사용하는 것이 더 좋다.
+  대부분의 경우 퍼센트 리터럴에서는 괄호를 사용하라.
 <sup>[[link](#percent-literal-braces)]</sup>
+  - 문자열 리터럴(`%q`, `%Q`)은 `()`를 사용한다.
+  - 배열 리터럴(`%w`, `%i`, `%W`, `%I`)은 표준 배열 리터럴과 동일한 `[]`를 사용한다.
+  - 정규표현식 리터럴(`%r`)은 정규표현식 내부에서 괄호를 빈번하게 사용하기 때문에
+  `{}`를 사용한다. 그런 이유로 덜 흔하게 사용되는 `{`이 `%r` 리터럴에 가장 좋다.
+  - 그 이외의 모든 리터럴(예: `%s`, `%x`)은 `()`를 사용한다.
 
   ```Ruby
   # 나쁜 예
-  %w[one two three]
   %q{"Test's king!", John said.}
 
   # 좋은 예
-  %w(one two three)
   %q("Test's king!", John said.)
-  ```
+
+  # 나쁜 예
+  %w(one two three)
+  %i(one two three)
+
+  # 좋은 예
+  %w[one two three]
+  %i[one two three]
+
+  # 나쁜 예
+  %r((\w+)-(\d+))
+  %r{\w{1,2}\d{2,5}}
+
+  # 좋은 예
+  %r{(\w+)-(\d+)}
+  %r|\w{1,2}\d{2,5}
+```
 
 ## 메타프로그래밍
 
