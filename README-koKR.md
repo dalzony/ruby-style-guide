@@ -1013,7 +1013,7 @@
   fail(RuntimeError, "Failed to save document!") unless document.save
 
   # ok
-  # control flow
+  # 제어문
   document.save || fail(RuntimeError, "Failed to save document!")
   ```
 
@@ -2010,7 +2010,7 @@
   ```
 
 * <a name="snake-case-symbols-methods-vars-with-numbers"></a>
-  심볼이나 메소드, 변수명에서 숫자를 앞에 오는 문자로부터 분리하지 마라.
+  심볼이나 메소드, 변수명에서 숫자를 띄우지 마라.
 <sup>[[link](#snake-case-symbols-methods-vars-with-numbers)]</sup>
 
   ```Ruby
@@ -2314,18 +2314,18 @@
 
 * <a name="magic-comments-first"></a>
   매직 코멘트는 모든 코드와 문서 위에 두어라. 매직 코멘트는 소스 파일에
-쉬뱅(!)을 사용하는 경우에만 그 밑에 두어라.
+쉬뱅(#!)을 사용하는 경우에만 그 밑에 두어라.
 <sup>[[link](#magic-comments-first)]</sup>
 
   ```Ruby
   # 좋은 예
   # frozen_string_literal: true
-  # Person에 대한 문서
+  # Some documentation about Person
   class Person
   end
 
   # 나쁜 예
-  # Person에 대한 문서
+  # Some documentation about Person
   # frozen_string_literal: true
   class Person
   end
@@ -2344,7 +2344,7 @@
   ```
 
 * <a name="one-magic-comment-per-line"></a>
-  여러 개의 매직 코멘트를 사용하는 경우에는 각각 다른 줄로 나누어라.
+  여러 개의 매직 코멘트를 사용하는 경우에는 한 줄에 하나의 매직 코멘트만 사용하라.
 <sup>[[link](#one-magic-comment-per-line)]</sup>
 
   ```Ruby
@@ -2364,14 +2364,14 @@
   # 좋은 예
   # frozen_string_literal: true
 
-  # Person에 대한 문서
+  # Some documentation about Person
   class Person
     # 생략
   end
 
   # 나쁜 예
   # frozen_string_literal: true
-  # Person에 대한 문서
+  # Some documentation about Person
   class Person
     # 생략
   end
@@ -2875,14 +2875,14 @@
 
 * <a name="class-and-self"></a>
   클래스나 모듈 메소드가 서로를 호출하는 경우에 `self`나 `.`을 포함한 자신의
-  이름을 생략해라. 이는 클래스를 함수인것 처럼 사용하는 "서비스 클래스"나 다른
-  비슷한 컨셉에서 많이 볼 수 있다. 이는 그러한 클래스들을 만들 때의 반복 작업을
+  이름을 생략해라. 이는 클래스를 함수인 것처럼 사용하는 '서비스 클래스'나 다른
+  비슷한 컨셉에서 많이 볼 수 있다. 이는 그러한 클래스를 만들 때의 반복 작업을
   줄이기 위한 의도를 가지고 있다.
   <sup>[[link](#class-and-self)]</sup>
 
   ```Ruby
   class TestClass
-    # 나쁜 예 -- 클래스의 이름이 바뀌거나 메소드의 위치가 바뀔 때 해야할 작업이 더 많다
+    # 나쁜 예 -- 클래스의 이름이 바뀌거나 메소드의 위치가 바뀔 때 해야 할 작업이 더 많다
     def self.call(param1, param2)
       TestClass.new(param1).call(param2)
     end
@@ -3872,8 +3872,8 @@
 
   # 좋은 예
   %r{(\w+)-(\d+)}
-  %r|\w{1,2}\d{2,5}
-```
+  %r|\w{1,2}\d{2,5}|
+  ```
 
 ## 메타프로그래밍
 
