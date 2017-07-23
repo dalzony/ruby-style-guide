@@ -3938,7 +3938,7 @@
 
     ```ruby
     # 나쁜 예
-    def method_missing?(meth, *params, &block)
+    def method_missing(meth, *params, &block)
       if /^find_by_(?<prop>.*)/ =~ meth
         # ... find_by 하는 코드가 많이
       else
@@ -3947,7 +3947,7 @@
     end
 
     # 좋은 예
-    def method_missing?(meth, *params, &block)
+    def method_missing(meth, *params, &block)
       if /^find_by_(?<prop>.*)/ =~ meth
         find_by(prop, *params, &block)
       else
